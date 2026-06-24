@@ -6,13 +6,58 @@
     <title>ABISMOX // Gaming + Tech Archive</title>
     <meta name="description" content="ABISMOX - Archivo retro de videojuegos y tecnología. Pixel art, nostalgia y futuro digital.">
     <meta name="theme-color" content="#000000">
+    <meta name="author" content="ABISMOX Agent">
+
+    <base href="./">
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="canonical" href="https://Abismox.github.io/abismox/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ABISMOX // Gaming + Tech Archive">
+    <meta property="og:description" content="Archivo retro de videojuegos y tecnología. Pixel art, nostalgia y futuro digital.">
+    <meta property="og:url" content="https://Abismox.github.io/abismox/">
+    <meta property="og:image" content="https://Abismox.github.io/abismox/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:site_name" content="ABISMOX">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ABISMOX // Gaming + Tech Archive">
+    <meta name="twitter:description" content="Archivo retro de videojuegos y tecnología. Pixel art, nostalgia y futuro digital.">
+    <meta name="twitter:image" content="https://Abismox.github.io/abismox/og-image.png">
+
+    <link rel="alternate" type="application/rss+xml" title="ABISMOX RSS" href="feed.xml">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="sitemap.xml">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "ABISMOX",
+      "description": "Archivo retro de videojuegos y tecnología. Pixel art, nostalgia y futuro digital.",
+      "url": "https://Abismox.github.io/abismox/",
+      "inLanguage": "es",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://Abismox.github.io/abismox/?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
 </head>
 <body>
+
+    <a href="#feed" class="skip-link">Saltar al contenido</a>
 
     <header class="hero" role="banner">
         <canvas id="snake-canvas" aria-hidden="true"></canvas>
@@ -35,10 +80,23 @@
         </div>
     </header>
 
-    <nav class="filtros" aria-label="Filtros de categoría">
-        <button class="filtro-btn active" data-filter="todos" aria-pressed="true">TODO</button>
-        <button class="filtro-btn" data-filter="videojuegos" aria-pressed="false">VIDEOJUEGOS</button>
-        <button class="filtro-btn" data-filter="tecnologia" aria-pressed="false">TECNOLOGÍA</button>
+    <nav class="filtros" aria-label="Filtros y búsqueda">
+        <div class="search-bar">
+            <span class="search-prefix" aria-hidden="true">&gt;</span>
+            <input type="search"
+                   id="search-input"
+                   class="search-input"
+                   placeholder="BUSCAR NOTICIAS..."
+                   aria-label="Buscar noticias"
+                   autocomplete="off"
+                   spellcheck="false">
+            <button id="search-clear" class="search-clear" aria-label="Limpiar búsqueda" type="button">×</button>
+        </div>
+        <div class="filter-buttons" role="group" aria-label="Filtros de categoría">
+            <button class="filtro-btn active" data-filter="todos" aria-pressed="true">TODO</button>
+            <button class="filtro-btn" data-filter="videojuegos" aria-pressed="false">VIDEOJUEGOS</button>
+            <button class="filtro-btn" data-filter="tecnologia" aria-pressed="false">TECNOLOGÍA</button>
+        </div>
     </nav>
 
     <main>
@@ -66,11 +124,13 @@
         <p class="footer-text">El archivo definitivo para gamers y techies.<br>Pixel art, nostalgia y futuro digital.</p>
 
         <div class="footer-meta">
-            <span class="meta-item">v1.0.0</span>
+            <span class="meta-item">v1.1.0</span>
             <span class="meta-sep">//</span>
             <span class="meta-item">EST. 2026</span>
             <span class="meta-sep">//</span>
             <span class="meta-item">N64/PS1 ERA</span>
+            <span class="meta-sep">//</span>
+            <a class="footer-rss" href="feed.xml" aria-label="Feed RSS">RSS</a>
         </div>
 
         <div class="footer-credits">

@@ -1,0 +1,29 @@
+# Secrets (nunca commitear)
+.env
+*.env.local
+
+# Logs
+deploy.log
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build temporal (posts y feed SÍ se commitean para GitHub Pages)
+node_modules/
+dist/

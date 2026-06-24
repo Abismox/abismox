@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>ABISMOX // Gaming + Tech Archive</title>
+    <link>https://Abismox.github.io/abismox/</link>
+    <description>Archivo automático de noticias gaming + tecnología. Pixel art, nostalgia y futuro digital.</description>
+    <atom:link href="https://Abismox.github.io/abismox/feed.xml" rel="self" type="application/rss+xml"/>
+    <language>es-es</language>
+    <lastBuildDate>Wed, 24 Jun 2026 16:54:19 +0000</lastBuildDate>
+    <generator>ABISMOX build.py</generator>
+    <item>
+      <title>NVIDIA ANUNCIA LA RTX 6090: 32GB VRAM Y RAY TRACING 2.0</title>
+      <link>https://Abismox.github.io/abismox/posts/nvidia-anuncia-rtx-6090-32gb-vram-ray-tracing-2-0.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/nvidia-anuncia-rtx-6090-32gb-vram-ray-tracing-2-0.html</guid>
+      <pubDate>Mon, 15 Jun 2026 00:00:00 +0000</pubDate>
+      <category>TECNOLOGÍA</category>
+      <description>La nueva generación de GPUs NVIDIA duplica el rendimiento en trazado de rayos. Lanzamiento previsto para septiembre con precio inicial de 1599 dólares en su versión Founder's Edition.</description>
+    </item>
+    <item>
+      <title>OPENAI LANZA GPT-6 CON RAZONAMIENTO MULTIMODAL NATIVO Y 2M TOKENS</title>
+      <link>https://Abismox.github.io/abismox/posts/openai-lanza-gpt-6-razonamiento-multimodal-nativo-2m-tokens.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/openai-lanza-gpt-6-razonamiento-multimodal-nativo-2m-tokens.html</guid>
+      <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+      <category>TECNOLOGÍA</category>
+      <description>La nueva versión procesa texto, imagen, audio y video sin modelos separados. Disponible en API y ChatGPT Plus desde hoy con precios 40% menores a la versión anterior.</description>
+    </item>
+    <item>
+      <title>GTA VI LANZAMIENTO CONFIRMADO PARA OCTUBRE 2026 EN PS5 Y XBOX SERIES</title>
+      <link>https://Abismox.github.io/abismox/posts/gta-vi-lanzamiento-confirmado-octubre-2026-ps5-xbox-series.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/gta-vi-lanzamiento-confirmado-octubre-2026-ps5-xbox-series.html</guid>
+      <pubDate>Thu, 28 May 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>Rockstar Games confirma fecha oficial de lanzamiento después de años de rumores. La preventa abre este viernes con tres ediciones disponibles y bundle especial para coleccionistas.</description>
+    </item>
+    <item>
+      <title>APPLE M5 ULTRA: 32 NÚCLEOS CPU Y 80 GPU EN PROCESO DE 2NM</title>
+      <link>https://Abismox.github.io/abismox/posts/apple-m5-ultra-32-nucleos-cpu-80-gpu-proceso-2nm.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/apple-m5-ultra-32-nucleos-cpu-80-gpu-proceso-2nm.html</guid>
+      <pubDate>Wed, 20 May 2026 00:00:00 +0000</pubDate>
+      <category>TECNOLOGÍA</category>
+      <description>El nuevo SoC más potente de Apple llega al Mac Studio y Mac Pro. Disponible desde junio con precios desde 4999 dólares y soporte para 192GB de memoria unificada.</description>
+    </item>
+    <item>
+      <title>ELDEN RING NIGHTREIGN: FROM SOFTWARE REINVENTA EL COOPERATIVO</title>
+      <link>https://Abismox.github.io/abismox/posts/elden-ring-nightreign-from-software-reinventa-cooperativo.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/elden-ring-nightreign-from-software-reinventa-cooperativo.html</guid>
+      <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>El nuevo DLC de Elden Ring ofrece sesiones rápidas de 30 minutos para 3 jugadores. Disponible desde hoy en PS5, Xbox Series y PC con reviews muy positivas en Steam.</description>
+    </item>
+    <item>
+      <title>VS CODE 2.0: REESCRITURA COMPLETA EN RUST Y MODO AGENT NATIVO</title>
+      <link>https://Abismox.github.io/abismox/posts/vs-code-2-0-reescritura-completa-rust-modo-agent-nativo.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/vs-code-2-0-reescritura-completa-rust-modo-agent-nativo.html</guid>
+      <pubDate>Sat, 25 Apr 2026 00:00:00 +0000</pubDate>
+      <category>TECNOLOGÍA</category>
+      <description>Microsoft lanza la mayor actualización del editor. Tiempo de inicio reducido 70% y nuevo Agent Mode que programa junto a ti en tiempo real sin extensiones adicionales.</description>
+    </item>
+    <item>
+      <title>SONY ANUNCIA PS5 PRO SLIM CON UNIDAD DE DISCO EXTRAÍBLE EN MAYO</title>
+      <link>https://Abismox.github.io/abismox/posts/sony-anuncia-ps5-pro-slim-unidad-disco-extraible-mayo.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/sony-anuncia-ps5-pro-slim-unidad-disco-extraible-mayo.html</guid>
+      <pubDate>Wed, 15 Apr 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>La nueva versión es 30% más delgada y consume 20% menos energía. Lanzamiento en mayo con precio de 599 dólares y un bundle especial con GTA VI por 749 dólares.</description>
+    </item>
+    <item>
+      <title>ANTHROPIC PRESENTA CLAUDE OPUS 4.5 CON VENTANA DE 1M TOKENS</title>
+      <link>https://Abismox.github.io/abismox/posts/anthropic-presenta-claude-opus-4-5-ventana-1m-tokens.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/anthropic-presenta-claude-opus-4-5-ventana-1m-tokens.html</guid>
+      <pubDate>Wed, 01 Apr 2026 00:00:00 +0000</pubDate>
+      <category>TECNOLOGÍA</category>
+      <description>El nuevo modelo insignia de Anthropic mejora en código y razonamiento matemático. Disponible en claude.ai y vía API con planes Pro desde 20 dólares mensuales.</description>
+    </item>
+  </channel>
+</rss>

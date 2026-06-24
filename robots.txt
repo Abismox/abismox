@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://Abismox.github.io/abismox/sitemap.xml
