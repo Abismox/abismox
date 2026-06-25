@@ -62,10 +62,10 @@ RELATED_MAX_ITEMS = 3
 WORDS_PER_MINUTE = 200
 
 FUENTES_RSS = [
-    ("https://www.eurogamer.es/?feed=rss", "videojuegos"),
-    ("https://feeds.feedburner.com/IGN/IGNArticles", "videojuegos"),
-    ("https://www.hackplayers.com/feed", "tecnologia"),
-    ("https://www.genbeta.com/feed", "tecnologia"),
+    ("https://vandal.elespanol.com/rss", "videojuegos"),
+    ("https://www.3djuegos.com/rss/juegos/", "videojuegos"),
+    ("https://www.xataka.com/feedburner.xml", "tecnologia"),
+    ("https://www.muycomputer.com/feed/", "tecnologia"),
 ]
 
 logging.basicConfig(
