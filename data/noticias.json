@@ -1,6 +1,66 @@
 {
   "noticias": [
     {
+      "slug": "locura-o-genialidad-bungie-simulador-citas-destiny",
+      "titulo": "LOCURA O GENIALIDAD? BUNGIE PLANTEO UN SIMULADOR DE CITAS DE DESTINY",
+      "preview": "EXTRANO PROYECTO DE BUNGIE: UN SIMULADOR DE CITAS BASADO EN DESTINY NUNCA LLEGO A VER LA LUZ.",
+      "contenido": "DOS EX TRABAJADORES DE BUNGIE HAN CONFIRMADO QUE LA IDEA DE UN SIMULADOR DE CITAS DE DESTINY FUE CONSIDERADA PERO NUNCA FUE APROBADA. ROBERT BROOKES, EX DISEÑADOR NARRATIVO, Y LIANA RUPPERT, EX COMMUNITY MANAGER, REVELARON ESTE PROYECTO POCO CONVENCIONAL. A PESAR DE LA IDEA INNOVADORA, EL SIMULADOR NUNCA FUE DESARROLLADO Y SE QUEDO EN NADA MAS QUE UNA PROPUESTA. ESTE REVELACION NOS MUESTRA LAS IDEAS CREATIVAS QUE A VECES SURGEN TRAS BAMBALINAS EN LA INDUSTRIA DE LOS VIDEOJUEGOS.",
+      "color": "#FF5733",
+      "link_externo": "https://vandal.elespanol.com/noticia/1350791166/locura-o-genialidad-bungie-llego-a-plantearse-la-idea-de-desarrollar-un-simulador-de-citas-de-destiny/",
+      "categoria": "videojuegos",
+      "fecha": "2026-06-25",
+      "es_auto": true,
+      "fuente": "auto"
+    },
+    {
+      "slug": "kebab-case",
+      "titulo": "HABR EDICION COLECCIONISTA DE GTA 6?",
+      "preview": "MEDIAMARKT ACLARA QUE ROCKSTAR NO HA ANUNCIADO PLANES PARA UNA EDICION COLECCIONISTA DE GTA 6.",
+      "contenido": "MEDIAMARKT HA ACLARADO QUE ROCKSTAR GAMES NO HA ANUNCIADO NINGUN PLAN PARA LANZAR UNA EDICION COLECCIONISTA DE GTA 6. A PESAR DE LA EXPECTATIVA GENERADA POR LOS FANATICOS, NO HAY CONFIRMACION OFICIAL DE UNA VERSION PARA COLECCIONISTAS DEL JUEGO. LA CONFUSION SURGE EN MEDIO DEL INICIO DE LA CAMPAÑA DE RESERVAS, PERO LAS TIENDAS HAN DESMENTIDO LOS RUMORES. LOS JUGADORES DEBEN ESTAR ATENTOS A LAS ACTUALIZACIONES OFICIALES DE ROCKSTAR PARA EVITAR DESINFORMACION.",
+      "color": "#FF4500",
+      "link_externo": "https://vandal.elespanol.com/noticia/1350791165/habra-edicion-coleccionista-de-gta-6-las-tiendas-aclaran-que-rockstar-no-ha-anunciado-planes-para-ello/",
+      "categoria": "videojuegos",
+      "fecha": "2026-06-25",
+      "es_auto": true,
+      "fuente": "auto"
+    },
+    {
+      "slug": "ghost-of-yotei-anima-turismo",
+      "titulo": "GHOST OF YOTEI IMPULSA EL TURISMO EN JAPON",
+      "preview": "LA FRANQUICIA 'GHOST OF YOTEI' SE UTILIZA PARA IMPULSAR EL TURISMO EN LA REGIÓN.",
+      "contenido": "AL IGUAL QUE 'GHOST OF TSUSHIMA', 'GHOST OF YOTEI' SE ESTÁ UTILIZANDO PARA ATRAER TURISTAS A LA REGIÓN DE YOTEI. CON 'MERCHANDISING' Y VIAJES GUIADOS, LAS AUTORIDADES LOCALES ESPERAN APROVECHAR EL ÉXITO DEL JUEGO PARA IMPULSAR LA ECONOMÍA LOCAL. EL JUEGO, LANZADO EN OCTUBRE PARA PLAYSTATION 5, HA GENERADO UNA GRAN EXPECTATIVA Y AHORA SE PLANIFICAN CAMPAÑAS PARA CAPITALIZAR SU POPULARIDAD.",
+      "color": "#1A2B3C",
+      "link_externo": "https://vandal.elespanol.com/noticia/1350791164/ghost-of-yotei-anima-el-turismo-de-la-region-japonesa-y-se-preparan-campanas-para-incentivar-el-turismo/",
+      "categoria": "videojuegos",
+      "fecha": "2026-06-25",
+      "es_auto": true,
+      "fuente": "auto"
+    },
+    {
+      "slug": "polmica-con-gta-6-rockstar-bloquear-5-tiendas-del-juego-detrs-de-la-edicin-ms-cara",
+      "titulo": "POLÉMICA CON GTA 6: ROCKSTAR BLOQUEA 5 TIENDAS DEL JUEGO TRAS LA EDICIÓN MÁS CARA",
+      "preview": "LA ULTIMATE EDITION DE GTA 6 INCLUYE TIENDAS EXCLUSIVAS PARA EL MODO HISTORIA, PERO ROCKSTAR LAS BLOQUEA TRAS SU LANZAMIENTO.",
+      "contenido": "LA ULTIMATE EDITION DE GTA 6 PROMETÍA ACCESO A CINCO TIENDAS EXCLUSIVAS EN EL MODO HISTORIA, OFRECIENDO OPCIONES DE VEHÍCULOS, ROPA, TATUAJES Y PELUQUERÍA PARA LOS PERSONAJES JASON Y LUCIA. SIN EMBARGO, ROCKSTAR GAMES HA DECIDIDO BLOQUEAR EL ACCESO A ESTAS TIENDAS, LO QUE HA GENERADO CRÍTICAS ENTRE LOS JUGADORES QUE PAGARON POR LA EDICIÓN MÁS CARA. LA DECISIÓN HA SIDO DETALLADA EN SU PÁGINA OFICIAL, AUMENTANDO LA POLÉMICA EN TORNO AL JUEGO. LOS AFECTADOS SE PREGUNTAN SI ESTO ES UNA PRÁCTICA JUSTA O UN MOVIMIENTO PARA AUMENTAR LAS VENTAS DE EDICIONES FUTURAS.",
+      "color": "#FF0000",
+      "link_externo": "https://vandal.elespanol.com/noticia/1350791162/polemica-con-gta-6-rockstar-bloqueara-5-tiendas-del-juego-detras-de-la-edicion-mas-cara/",
+      "categoria": "videojuegos",
+      "fecha": "2026-06-25",
+      "es_auto": true,
+      "fuente": "auto"
+    },
+    {
+      "slug": "epic-games-store-regala-juegos",
+      "titulo": "EPIC GAMES STORE REGALA DOS NUEVOS JUEGOS: ¡RECLAMALOS YA!",
+      "preview": "ROLLERCOASTER TYCOON 3 Y VOIDWROUGHT ESTÁN DISPONIBLES HASTA EL 2 DE JULIO",
+      "contenido": "LA EPIC GAMES STORE OFRECE DOS JUEGOS GRATUITOS ESTA SEMANA: ROLLERCOASTER TYCOON 3 COMPLETE EDITION Y VOIDWROUGHT. LOS JUGADORES PUEDEN RECLAMARLOS DE MANERA GRATUITA HASTA EL 2 DE JULIO. ESTA PROMOCIÓN ES UNA GRAN OPORTUNIDAD PARA AGREGAR ESTOS TÍTULOS A TU COLECCIÓN SIN COSTO ALGUNO. PARA OBTENERLOS, SIMPLEMENTE INGRESA A LA EPIC GAMES STORE Y AÑÁDELOS A TU BIBLIOTECA. NO TE PIERDAS ESTA OPORTUNIDAD DE DISFRUTAR DE HORAS DE ENTRETENIMIENTO.",
+      "color": "#FF5733",
+      "link_externo": "https://vandal.elespanol.com/noticia/1350791160/epic-games-store-regala-dos-nuevos-juegos-reclamalos-ya-y-llevatelos-gratis-para-siempre/",
+      "categoria": "videojuegos",
+      "fecha": "2026-06-25",
+      "es_auto": true,
+      "fuente": "auto"
+    },
+    {
       "slug": "locura-o-genialidad-bungie-llego-a-plantearse-la-idea-de-desarrollar-un-simulador-de-citas-de-destiny",
       "titulo": "LOCURA O GENIALIDAD? BUNGIE PLANTEO UN SIMULADOR DE CITAS DE DESTINY",
       "preview": "DOS EX TRABAJADORES DE BUNGIE CONFIRMARON QUE CONSIDERARON LA IDEA PERO NUNCA FUE APROBADA",
@@ -13,48 +73,12 @@
       "fuente": "auto"
     },
     {
-      "slug": "kebab-case",
-      "titulo": "HABR EDICION COLECCIONISTA DE GTA 6?",
-      "preview": "MEDIAMARKT ACLARA QUE ROCKSTAR NO HA ANUNCIADO PLANES PARA UNA EDICION COLECCIONISTA DE GTA 6.",
-      "contenido": "MEDIAMARKT HA ACLARADO QUE ROCKSTAR GAMES NO HA ANUNCIADO NINGUN PLAN PARA LANZAR UNA EDICION COLECCIONISTA DE GTA 6. A PESAR DE LA EXPECTATIVA GENERADA POR LOS FANATICOS, NO HAY CONFIRMACION OFICIAL DE UNA VERSION PARA COLECCIONISTAS DEL JUEGO. EL INICIO DE LA CAMPAÑA DE RESERVAS DE GTA 6 NO INCLUYE NINGUNA REFERENCIA A UNA EDICION ESPECIAL PARA COLECCIONISTAS.",
-      "color": "#FF5733",
-      "link_externo": "https://vandal.elespanol.com/noticia/1350791165/habra-edicion-coleccionista-de-gta-6-las-tiendas-aclaran-que-rockstar-no-ha-anunciado-planes-para-ello/",
-      "categoria": "videojuegos",
-      "fecha": "2026-06-25",
-      "es_auto": true,
-      "fuente": "auto"
-    },
-    {
-      "slug": "ghost-of-yotei-anima-turismo",
-      "titulo": "GHOST OF YOTEI IMPULSA EL TURISMO EN JAPON",
-      "preview": "EL VIDEOJUEGO SE UTILIZA PARA PROMOVER EL TURISMO EN LA REGIÓN CON ACTIVIDADES TEMÁTICAS.",
-      "contenido": "GHOST OF YOTEI, LANZADO EL PASADO OCTUBRE EN PLAYSTATION 5, SE ESTÁ UTILIZANDO PARA IMPULSAR EL TURISMO EN LA REGIÓN DE YOTEI, JAPÓN. AL IGUAL QUE SUCEDIÓ CON GHOST OF TSUSHIMA, SE HAN PLANIFICADO CAMPAÑAS QUE INCLUYEN 'MERCHANDISING' Y VIAJES GUIADOS PARA ATRAER A LOS AMANTES DEL VIDEOJUEGO. ESTA ESTRATEGIA BUSCA APROVECHAR EL ÉXITO DEL JUEGO PARA DAR VISIBILIDAD A LA ZONA Y OFRECER EXPERIENCIAS INMERSIVAS A LOS VISITANTES.",
-      "color": "#1A2B3C",
-      "link_externo": "https://vandal.elespanol.com/noticia/1350791164/ghost-of-yotei-anima-el-turismo-de-la-region-japonesa-y-se-preparan-campanas-para-incentivar-el-turismo/",
-      "categoria": "videojuegos",
-      "fecha": "2026-06-25",
-      "es_auto": true,
-      "fuente": "auto"
-    },
-    {
       "slug": "enshrouded-fecha-lanzamiento",
       "titulo": "ENSHROUDED YA TIENE FECHA DE LANZAMIENTO EN PS5 Y PC, PERO RETRASA SU VERSION DE XBOX HASTA 2027",
       "preview": "ENSHROUDED SALDRA DEL ACCESO ANTICIPADO EL 15 DE OCTUBRE PARA PS5 Y PC, PERO LOS USUARIOS DE XBOX TENDRAN QUE ESPERAR HASTA 2027.",
       "contenido": "ENSHROUDED, EL RPG DE SUPERVIVENCIA Y CONSTRUCCION DE KEEN GAMES, ABANDONARA EL ACCESO ANTICIPADO EL 15 DE OCTUBRE DE 2023 PARA PLAYSTATION 5 Y PC. SIN EMBARGA, LOS JUGADORES DE XBOX SERIES TENDRAN QUE ESPERAR HASTA LA PRIMAVERA DE 2027 PARA DISFRUTAR DEL JUEGO. EL TITULO HA GENERADO EXPECTATIVA POR SU COMBINACION DE ELEMENTOS DE SUPERVIVENCIA Y CONSTRUCCION EN UN MUNDO ABIERTO.",
       "color": "#FF4500",
       "link_externo": "https://vandal.elespanol.com/noticia/1350791159/enshrouded-ya-tiene-fecha-de-lanzamiento-en-ps5-y-pc-pero-retrasa-su-version-de-xbox-hasta-2027/",
-      "categoria": "videojuegos",
-      "fecha": "2026-06-25",
-      "es_auto": true,
-      "fuente": "auto"
-    },
-    {
-      "slug": "polmica-con-gta-6-rockstar-bloquear-5-tiendas-del-juego-detrs-de-la-edicin-ms-cara",
-      "titulo": "POLÉMICA CON GTA 6: ROCKSTAR BLOQUEA 5 TIENDAS DEL JUEGO TRAS LA EDICIÓN MÁS CARA",
-      "preview": "LA ULTIMATE EDITION DE GTA 6 INCLUYE TIENDAS EXCLUSIVAS PARA EL MODO HISTORIA, PERO ROCKSTAR LAS BLOQUEA TRAS CRÍTICAS.",
-      "contenido": "LA EDICIÓN ULTIMATE DE GTA 6 OFRECE CINCO TIENDAS EXCLUSIVAS EN EL MODO HISTORIA, PERO LOS JUGADORES SE HAN MOSTRADO MOLESTOS AL DESCUBRIR QUE ESTAS ESTÁN BLOQUEADAS DETRÁS DE LA VERSIÓN MÁS CARA DEL JUEGO. LAS TIENDAS OFRECEN OPCIONES DE VEHÍCULOS, ROPA, TATUAJES Y PELUQUERÍA PARA LOS PERSONAJES JASON Y LUCIA. ROCKSTAR GAMES HA RESPONDIDO A LAS CRÍTICAS DETALLANDO QUE ESTAS EXCLUSIVIDADES SON PARTE DE LA PROMOCIÓN DE LA EDICIÓN ULTIMATE, LO QUE HA GENERADO DEBATE ENTRE LA COMUNIDAD DE JUGADORES.",
-      "color": "#FF0000",
-      "link_externo": "https://vandal.elespanol.com/noticia/1350791162/polemica-con-gta-6-rockstar-bloqueara-5-tiendas-del-juego-detras-de-la-edicion-mas-cara/",
       "categoria": "videojuegos",
       "fecha": "2026-06-25",
       "es_auto": true,
