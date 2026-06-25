@@ -6,8 +6,72 @@
     <description>Archivo automático de noticias gaming + tecnología. Pixel art, nostalgia y futuro digital.</description>
     <atom:link href="https://Abismox.github.io/abismox/feed.xml" rel="self" type="application/rss+xml"/>
     <language>es-es</language>
-    <lastBuildDate>Thu, 25 Jun 2026 04:36:44 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 25 Jun 2026 04:45:08 +0000</lastBuildDate>
     <generator>ABISMOX build.py</generator>
+    <item>
+      <title>RESERVA DE GTA 6 CONFIRMADA: PRECIO, EDICIONES Y NOVEDADES</title>
+      <link>https://Abismox.github.io/abismox/posts/gta-6-reserva-rockstar.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/gta-6-reserva-rockstar.html</guid>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>ROCKSTAR GAMES PERMITE RESERVAR GRAND THEFT AUTO VI EN ESPAÑA CON DETALLES SOBRE PRECIO Y NOVEDADES.</description>
+    </item>
+    <item>
+      <title>GTA 6 YA SE PUEDE RESERVAR EN ESPANA</title>
+      <link>https://Abismox.github.io/abismox/posts/gta-6-ya-se-puede-reservar-en-espana-para-ps5-y-xbox-series.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/gta-6-ya-se-puede-reservar-en-espana-para-ps5-y-xbox-series.html</guid>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>VICE CITY NOS LLAMA! LAS RESERVAS DE GTA 6 YA ESTAN ABIERTAS PARA PS5 Y XBOX SERIES.</description>
+    </item>
+    <item>
+      <title>GTA 6 YA TIENE PRECIO EN ESPANA Y ES MAS BAJO DE LO ESPERADO</title>
+      <link>https://Abismox.github.io/abismox/posts/gta-6-precio-espana.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/gta-6-precio-espana.html</guid>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>EL ESPERADO GRAND THEFT AUTO VI SE PUEDE RESERVAR EN FINLANDIA Y CONFIRMA SU PRECIO EN EUROPA.</description>
+    </item>
+    <item>
+      <title>DIGITAL FOUNDRY ANALIZA NUEVAS CAPTURAS DE GTA 6</title>
+      <link>https://Abismox.github.io/abismox/posts/digital-foundry-analiza-nuevas-capturas-gta-6.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/digital-foundry-analiza-nuevas-capturas-gta-6.html</guid>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>EL MEDIO TECNICO DIGITAL FOUNDRY DESTACA EL USO DE RAY TRACING EN GTA 6 PERO DUDA QUE SEAN EN TIEMPO REAL EN CONSOLA.</description>
+    </item>
+    <item>
+      <title>ROCKSTAR CONFIRMA FECHA DE PRECARGA PARA GTA 6</title>
+      <link>https://Abismox.github.io/abismox/posts/kebab-case.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/kebab-case.html</guid>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>ROCKSTAR REVELA LA FECHA DE PRECARGA PARA GRAND THEFT AUTO 6, PERMITIENDO A LOS JUGADORES COMENZAR A JUGAR DESDE EL MISMO DÍA DE LANZAMIENTO.</description>
+    </item>
+    <item>
+      <title>ANALISTAS DE LA INDUSTRIA HABLAN SOBRE GTA 6</title>
+      <link>https://Abismox.github.io/abismox/posts/analistas-industriales-opinan-sobre-gta-6.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/analistas-industriales-opinan-sobre-gta-6.html</guid>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>LA EDICION FISICA DE GTA 6 NO AFECTARA SUS VENTAS SEGUN EXPERTOS</description>
+    </item>
+    <item>
+      <title>PRECIOS DE PS6 Y XBOX HELIX: ANALISTAS ESPECULAN SOBRE LOS MAS DE 1000 EUROS</title>
+      <link>https://Abismox.github.io/abismox/posts/precio-ps6-xbox-helix.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/precio-ps6-xbox-helix.html</guid>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>LOS ANALISTAS ESPERAN QUE PLAYSTATION 6 Y XBOX HELIX TENGAN PRECIOS SIMILARES A STEAM MACHINE, SUPERANDO LOS 1000 EUROS.</description>
+    </item>
+    <item>
+      <title>ROCKSTAR LO HACE OFICIAL: GRAND THEFT AUTO 6 ESTAR MEJORADO EN PLAYSTATION 5 PRO</title>
+      <link>https://Abismox.github.io/abismox/posts/rockstar-confirma-mejoras-gta-6-ps5-pro.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/rockstar-confirma-mejoras-gta-6-ps5-pro.html</guid>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>GRAND THEFT AUTO 6 TENDR MEJORAS TCNICAS EN PLAYSTATION 5 PRO, SEGUN LA PAGINA OFICIAL DE PLAYSTATION STORE.</description>
+    </item>
     <item>
       <title>NVIDIA ANUNCIA LA RTX 6090: 32GB VRAM Y RAY TRACING 2.0</title>
       <link>https://Abismox.github.io/abismox/posts/nvidia-anuncia-rtx-6090-32gb-vram-ray-tracing-2-0.html</link>
