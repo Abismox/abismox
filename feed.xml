@@ -6,31 +6,39 @@
     <description>Archivo automático de noticias gaming + tecnología. Pixel art, nostalgia y futuro digital.</description>
     <atom:link href="https://Abismox.github.io/abismox/feed.xml" rel="self" type="application/rss+xml"/>
     <language>es-es</language>
-    <lastBuildDate>Thu, 25 Jun 2026 16:50:01 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 25 Jun 2026 17:00:00 +0000</lastBuildDate>
     <generator>ABISMOX build.py</generator>
     <item>
-      <title>LOCURA O GENIALIDAD? BUNGIE PLANTEO DESARROLLAR UN SIMULADOR DE CITAS DE DESTINY</title>
+      <title>LOCURA O GENIALIDAD? BUNGIE PLANTEO UN SIMULADOR DE CITAS DE DESTINY</title>
       <link>https://Abismox.github.io/abismox/posts/locura-o-genialidad-bungie-llego-a-plantearse-la-idea-de-desarrollar-un-simulador-de-citas-de-destiny.html</link>
       <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/locura-o-genialidad-bungie-llego-a-plantearse-la-idea-de-desarrollar-un-simulador-de-citas-de-destiny.html</guid>
       <pubDate>Thu, 25 Jun 2026 00:00:00 +0000</pubDate>
       <category>VIDEOJUEGOS</category>
-      <description>EXTRANO PROYECTO FUE CONSIDERADO PERO NUNCA FUE APROBADO</description>
+      <description>DOS EX TRABAJADORES DE BUNGIE CONFIRMARON QUE CONSIDERARON LA IDEA PERO NUNCA FUE APROBADA</description>
     </item>
     <item>
-      <title>GTA 6: EDICION COLECCIONISTA?</title>
+      <title>HABR EDICION COLECCIONISTA DE GTA 6?</title>
       <link>https://Abismox.github.io/abismox/posts/kebab-case.html</link>
       <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/kebab-case.html</guid>
       <pubDate>Thu, 25 Jun 2026 00:00:00 +0000</pubDate>
       <category>VIDEOJUEGOS</category>
-      <description>MEDIAMARKT ACLARA QUE ROCKSTAR NO HA ANUNCIADO UNA EDICION COLECCIONISTA DE GTA 6.</description>
+      <description>MEDIAMARKT ACLARA QUE ROCKSTAR NO HA ANUNCIADO PLANES PARA UNA EDICION COLECCIONISTA DE GTA 6.</description>
     </item>
     <item>
-      <title>GHOST OF YOTEI IMPULSA TURISMO EN JAPON</title>
+      <title>GHOST OF YOTEI IMPULSA EL TURISMO EN JAPON</title>
       <link>https://Abismox.github.io/abismox/posts/ghost-of-yotei-anima-turismo.html</link>
       <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/ghost-of-yotei-anima-turismo.html</guid>
       <pubDate>Thu, 25 Jun 2026 00:00:00 +0000</pubDate>
       <category>VIDEOJUEGOS</category>
-      <description>EL VIDEOJUEGO SE UTILIZA PARA PROMOVER EL TURISMO EN LA REGIÓN CON 'MERCHANDISING' Y VIAJES GUIADOS.</description>
+      <description>EL VIDEOJUEGO SE UTILIZA PARA PROMOVER EL TURISMO EN LA REGIÓN CON ACTIVIDADES TEMÁTICAS.</description>
+    </item>
+    <item>
+      <title>ENSHROUDED YA TIENE FECHA DE LANZAMIENTO EN PS5 Y PC, PERO RETRASA SU VERSION DE XBOX HASTA 2027</title>
+      <link>https://Abismox.github.io/abismox/posts/enshrouded-fecha-lanzamiento.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/enshrouded-fecha-lanzamiento.html</guid>
+      <pubDate>Thu, 25 Jun 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>ENSHROUDED SALDRA DEL ACCESO ANTICIPADO EL 15 DE OCTUBRE PARA PS5 Y PC, PERO LOS USUARIOS DE XBOX TENDRAN QUE ESPERAR HASTA 2027.</description>
     </item>
     <item>
       <title>POLÉMICA CON GTA 6: ROCKSTAR BLOQUEA 5 TIENDAS DEL JUEGO TRAS LA EDICIÓN MÁS CARA</title>
@@ -47,14 +55,6 @@
       <pubDate>Thu, 25 Jun 2026 00:00:00 +0000</pubDate>
       <category>VIDEOJUEGOS</category>
       <description>SONY Y BUNGIE CONFIRMAN LOS DESPIDOS EN EL ESTUDIO, AFECTANDO A CASI TODO EL EQUIPO DE DESTINY.</description>
-    </item>
-    <item>
-      <title>ENSHROUDED YA TIENE FECHA DE LANZAMIENTO EN PS5 Y PC, PERO RETRASA SU VERSION DE XBOX HASTA 2027</title>
-      <link>https://Abismox.github.io/abismox/posts/enshrouded-fecha-lanzamiento.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/enshrouded-fecha-lanzamiento.html</guid>
-      <pubDate>Thu, 25 Jun 2026 00:00:00 +0000</pubDate>
-      <category>VIDEOJUEGOS</category>
-      <description>EL RPG DE SUPERVIVENCIA Y CONSTRUCCION ENSHROUDED SALDRA DEL ACCESO ANTICIPADO EL 15 DE OCTUBRE, PERO LA VERSION DE XBOX SERIES SE RETRASA HASTA 2027.</description>
     </item>
     <item>
       <title>GTA 6 YA DISPONIBLE PARA RESERVAR: PRECIO, EDICIONES Y NOVEDADES CONFIRMADAS</title>
