@@ -26,7 +26,7 @@ import os
 import re
 import sys
 import unicodedata
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 from xml.sax.saxutils import escape as xml_escape
@@ -60,6 +60,8 @@ CONTENT_PREVIEW_LENGTH = 300
 FEED_MAX_ITEMS = 20
 RELATED_MAX_ITEMS = 3
 WORDS_PER_MINUTE = 200
+MAX_POSTS = 30
+MAX_DAYS = 30
 
 FUENTES_RSS = [
     ("https://vandal.elespanol.com/rss", "videojuegos"),
@@ -148,6 +150,30 @@ def dedupe_y_orden(noticias: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         out.append(n)
     out.sort(key=lambda x: x.get("fecha") or "", reverse=True)
     return out
+
+
+def aplicar_cap(noticias: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Cap por antigüedad (MAX_DAYS) y por cantidad (MAX_POSTS)."""
+    if not noticias:
+        return []
+    cutoff = datetime.now(timezone.utc) - timedelta(days=MAX_DAYS)
+    filtradas = []
+    for n in noticias:
+        fecha_iso = n.get("fecha", "")
+        if not fecha_iso:
+            continue
+        try:
+            fecha_dt = datetime.fromisoformat(fecha_iso).replace(tzinfo=timezone.utc)
+            if fecha_dt >= cutoff:
+                filtradas.append(n)
+        except Exception:
+            continue
+    if len(filtradas) > MAX_POSTS:
+        eliminadas = len(filtradas) - MAX_POSTS
+        log.info("Cap por count: %d posts eliminados (max=%d)", eliminadas, MAX_POSTS)
+        filtradas = filtradas[:MAX_POSTS]
+    log.info("Cap aplicado: %d posts (<=%d dias, <=%d posts)", len(filtradas), MAX_DAYS, MAX_POSTS)
+    return filtradas
 
 
 # ============================================================
@@ -280,6 +306,7 @@ def fetch_noticias(dry_run: bool) -> List[Dict[str, Any]]:
         except Exception as e:
             log.warning("No se pudo leer historico: %s", e)
     combinado = dedupe_y_orden(nuevas + historico)
+    combinado = aplicar_cap(combinado)
     combinado = [validar_noticia(n) for n in combinado]
     combinado = [n for n in combinado if n]
     log.info("Noticias combinadas tras dedupe: %d", len(combinado))
@@ -561,6 +588,7 @@ def main() -> int:
         noticias = [validar_noticia(n) for n in data.get("noticias", [])]
         noticias = [n for n in noticias if n]
         noticias = dedupe_y_orden(noticias)
+        noticias = aplicar_cap(noticias)
     else:
         noticias = fetch_noticias(args.dry_run)
         if not args.dry_run:
