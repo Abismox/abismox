@@ -6,23 +6,23 @@
     <description>Archivo automático de noticias gaming + tecnología. Pixel art, nostalgia y futuro digital.</description>
     <atom:link href="https://Abismox.github.io/abismox/feed.xml" rel="self" type="application/rss+xml"/>
     <language>es-es</language>
-    <lastBuildDate>Thu, 25 Jun 2026 06:01:18 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 25 Jun 2026 16:37:43 +0000</lastBuildDate>
     <generator>ABISMOX build.py</generator>
     <item>
-      <title>RESERVA DE GTA 6: PRECIO, EDICIONES Y NOVEDADES CONFIRMADAS POR ROCKSTAR</title>
-      <link>https://Abismox.github.io/abismox/posts/gta-6-reserva-rockstar.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/gta-6-reserva-rockstar.html</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      <title>GTA 6 YA DISPONIBLE PARA RESERVAR: PRECIO, EDICIONES Y NOVEDADES CONFIRMADAS</title>
+      <link>https://Abismox.github.io/abismox/posts/gta-6-reserva-precio-ediciones.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/gta-6-reserva-precio-ediciones.html</guid>
+      <pubDate>Thu, 25 Jun 2026 00:00:00 +0000</pubDate>
       <category>VIDEOJUEGOS</category>
-      <description>GRAND THEFT AUTO VI YA ESTA DISPONIBLE PARA RESERVAR EN ESPAÑA CON DETALLES SOBRE PRECIO Y NOVEDADES.</description>
+      <description>GRAND THEFT AUTO VI YA SE PUEDE RESERVAR EN ESPAÑA CON NOVEDADES EN LA NARRATIVA Y SIN MULTIJUGADOR.</description>
     </item>
     <item>
-      <title>GTA 6 YA SE PUEDE RESERVAR EN ESPANA</title>
+      <title>GTA 6 YA DISPONIBLE PARA RESERVA EN ESPAÑA</title>
       <link>https://Abismox.github.io/abismox/posts/kebab-case.html</link>
       <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/kebab-case.html</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 25 Jun 2026 00:00:00 +0000</pubDate>
       <category>VIDEOJUEGOS</category>
-      <description>VICE CITY NOS LLAMA! LAS RESERVAS DE GTA 6 YA ESTAN ABIERTAS PARA PS5 Y XBOX SERIES.</description>
+      <description>VICE CITY NOS LLAMA! GTA 6 YA SE PUEDE RESERVAR PARA PS5 Y XBOX SERIES EN ESPAÑA.</description>
     </item>
     <item>
       <title>GTA 6 YA TIENE PRECIO EN ESPANA Y ES MAS BAJO DE LO ESPERADO</title>
@@ -30,7 +30,39 @@
       <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/gta-6-precio-espana.html</guid>
       <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
       <category>VIDEOJUEGOS</category>
-      <description>EL ESPERADO GRAND THEFT AUTO VI SE PUEDE RESERVAR EN FINLANDIA Y CONFIRMA SU PRECIO EN EUROPA.</description>
+      <description>EL ESPERADO GRAND THEFT AUTO VI SE PUEDE RESERVAR EN FINLANDIA A UN PRECIO DE 79,99 EUROS EN LA ZONA EURO.</description>
+    </item>
+    <item>
+      <title>DIGITAL FOUNDRY ANALIZA LAS NUEVAS CAPTURAS DE GTA 6</title>
+      <link>https://Abismox.github.io/abismox/posts/digital-foundry-analiza-gta-6.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/digital-foundry-analiza-gta-6.html</guid>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>EL MEDIO TECNICO DUDITA QUE LAS CAPTURAS SEAN EN TIEMPO REAL EN CONSOLA</description>
+    </item>
+    <item>
+      <title>ROCKSTAR CONFIRMA LA FECHA DE PRECARGA DE GTA 6</title>
+      <link>https://Abismox.github.io/abismox/posts/rockstar-confirma-fecha-precarga-gta-6.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/rockstar-confirma-fecha-precarga-gta-6.html</guid>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>ROCKSTAR HA REVELADO LA FECHA EN QUE PODREMOS PRECARGAR GRAND THEFT AUTO 6 PARA JUGAR DESDE EL MISMO DIA DE LANZAMIENTO.</description>
+    </item>
+    <item>
+      <title>ROCKSTAR CONFIRMA: GRAND THEFT AUTO 6 MEJORADO EN PLAYSTATION 5 PRO</title>
+      <link>https://Abismox.github.io/abismox/posts/rockstar-lo-hace-oficial-grand-theft-auto-6-estar-mejorado-en-playstation-5-pro.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/rockstar-lo-hace-oficial-grand-theft-auto-6-estar-mejorado-en-playstation-5-pro.html</guid>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>LA PAGINA OFICIAL DE GTA 6 CONFIRMA MEJORAS TECNICAS EN PLAYSTATION 5 PRO.</description>
+    </item>
+    <item>
+      <title>RESERVA DE GTA 6: PRECIO, EDICIONES Y NOVEDADES CONFIRMADAS POR ROCKSTAR</title>
+      <link>https://Abismox.github.io/abismox/posts/gta-6-reserva-rockstar.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/gta-6-reserva-rockstar.html</guid>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>GRAND THEFT AUTO VI YA ESTA DISPONIBLE PARA RESERVAR EN ESPAÑA CON DETALLES SOBRE PRECIO Y NOVEDADES.</description>
     </item>
     <item>
       <title>DIGITAL FOUNDRY ANALIZA CAPTURAS DE GTA 6 Y DUDAN DE RAY TRACING EN CONSOLA</title>
@@ -49,28 +81,12 @@
       <description>LOS ANALISTAS DICEN QUE LA AUSENCIA DE UNA VERSION EN DISCO NO AFECTARA LAS VENTAS DE GTA 6</description>
     </item>
     <item>
-      <title>ROCKSTAR CONFIRMA MEJORAS TECNICAS DE GTA 6 EN PLAYSTATION 5 PRO</title>
-      <link>https://Abismox.github.io/abismox/posts/rockstar-lo-hace-oficial-grand-theft-auto-6-estar-mejorado-en-playstation-5-pro.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/rockstar-lo-hace-oficial-grand-theft-auto-6-estar-mejorado-en-playstation-5-pro.html</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
-      <category>VIDEOJUEGOS</category>
-      <description>LA PAGINA OFICIAL DE GTA 6 EN PLAYSTATION STORE CONFIRMA MEJORAS TECNICAS PARA PLAYSTATION 5 PRO.</description>
-    </item>
-    <item>
       <title>DIGITAL FOUNDRY ANALIZA NUEVAS CAPTURAS DE GTA 6</title>
       <link>https://Abismox.github.io/abismox/posts/digital-foundry-analiza-nuevas-capturas-gta-6.html</link>
       <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/digital-foundry-analiza-nuevas-capturas-gta-6.html</guid>
       <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
       <category>VIDEOJUEGOS</category>
       <description>EL MEDIO TECNICO DUDITA QUE LAS CAPTURAS DE GTA 6 SEAN EN TIEMPO REAL EN CONSOLA.</description>
-    </item>
-    <item>
-      <title>ROCKSTAR CONFIRMA FECHA DE PRECARGA PARA GTA 6</title>
-      <link>https://Abismox.github.io/abismox/posts/rockstar-confirma-fecha-precarga-gta-6.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/rockstar-confirma-fecha-precarga-gta-6.html</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
-      <category>VIDEOJUEGOS</category>
-      <description>ROCKSTAR HA REVELADO LA FECHA EN QUE LOS JUGADORES PODRÁN PRECARGAR GRAND THEFT AUTO 6 PARA DISFRUTAR DESDE EL DÍA DE LANZAMIENTO.</description>
     </item>
     <item>
       <title>GTA 6 YA SE PUEDE RESERVAR EN ESPANA</title>
@@ -151,22 +167,6 @@
       <pubDate>Sat, 25 Apr 2026 00:00:00 +0000</pubDate>
       <category>TECNOLOGÍA</category>
       <description>Microsoft lanza la mayor actualización del editor. Tiempo de inicio reducido 70% y nuevo Agent Mode que programa junto a ti en tiempo real sin extensiones adicionales.</description>
-    </item>
-    <item>
-      <title>SONY ANUNCIA PS5 PRO SLIM CON UNIDAD DE DISCO EXTRAÍBLE EN MAYO</title>
-      <link>https://Abismox.github.io/abismox/posts/sony-anuncia-ps5-pro-slim-unidad-disco-extraible-mayo.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/sony-anuncia-ps5-pro-slim-unidad-disco-extraible-mayo.html</guid>
-      <pubDate>Wed, 15 Apr 2026 00:00:00 +0000</pubDate>
-      <category>VIDEOJUEGOS</category>
-      <description>La nueva versión es 30% más delgada y consume 20% menos energía. Lanzamiento en mayo con precio de 599 dólares y un bundle especial con GTA VI por 749 dólares.</description>
-    </item>
-    <item>
-      <title>ANTHROPIC PRESENTA CLAUDE OPUS 4.5 CON VENTANA DE 1M TOKENS</title>
-      <link>https://Abismox.github.io/abismox/posts/anthropic-presenta-claude-opus-4-5-ventana-1m-tokens.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/anthropic-presenta-claude-opus-4-5-ventana-1m-tokens.html</guid>
-      <pubDate>Wed, 01 Apr 2026 00:00:00 +0000</pubDate>
-      <category>TECNOLOGÍA</category>
-      <description>El nuevo modelo insignia de Anthropic mejora en código y razonamiento matemático. Disponible en claude.ai y vía API con planes Pro desde 20 dólares mensuales.</description>
     </item>
   </channel>
 </rss>
