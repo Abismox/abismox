@@ -6,15 +6,63 @@
     <description>Archivo automático de noticias gaming + tecnología. Pixel art, nostalgia y futuro digital.</description>
     <atom:link href="https://Abismox.github.io/abismox/feed.xml" rel="self" type="application/rss+xml"/>
     <language>es-es</language>
-    <lastBuildDate>Thu, 25 Jun 2026 04:45:08 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 25 Jun 2026 05:30:01 +0000</lastBuildDate>
     <generator>ABISMOX build.py</generator>
     <item>
-      <title>RESERVA DE GTA 6 CONFIRMADA: PRECIO, EDICIONES Y NOVEDADES</title>
+      <title>RESERVA DE GTA 6: PRECIO, EDICIONES Y NOVEDADES CONFIRMADAS POR ROCKSTAR GAMES</title>
       <link>https://Abismox.github.io/abismox/posts/gta-6-reserva-rockstar.html</link>
       <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/gta-6-reserva-rockstar.html</guid>
       <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
       <category>VIDEOJUEGOS</category>
-      <description>ROCKSTAR GAMES PERMITE RESERVAR GRAND THEFT AUTO VI EN ESPAÑA CON DETALLES SOBRE PRECIO Y NOVEDADES.</description>
+      <description>GTA 6 YA SE PUEDE RESERVAR EN ESPAÑA CON DETALLES SOBRE PRECIO Y NOVEDADES.</description>
+    </item>
+    <item>
+      <title>GTA 6 YA DISPONIBLE PARA RESERVA EN ESPAÑA</title>
+      <link>https://Abismox.github.io/abismox/posts/kebab-case.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/kebab-case.html</guid>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>LAS RESERVAS DE GTA 6 PARA PS5 Y XBOX SERIES YA ESTÁN ABIERTAS EN ESPAÑA</description>
+    </item>
+    <item>
+      <title>GTA 6 YA TIENE PRECIO EN ESPAÑA</title>
+      <link>https://Abismox.github.io/abismox/posts/gta-6-precio-espana.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/gta-6-precio-espana.html</guid>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>EL PRECIO DEL JUEGO ES DE 79,99 EUROS, MENOS DE LO ESPERADO.</description>
+    </item>
+    <item>
+      <title>DIGITAL FOUNDRY ANALIZA NUEVAS CAPTURAS DE GTA 6</title>
+      <link>https://Abismox.github.io/abismox/posts/digital-foundry-analiza-nuevas-capturas-gta-6.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/digital-foundry-analiza-nuevas-capturas-gta-6.html</guid>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>EL MEDIO TECNICO DUDITA QUE LAS CAPTURAS DE GTA 6 SEAN EN TIEMPO REAL EN CONSOLA.</description>
+    </item>
+    <item>
+      <title>ROCKSTAR CONFIRMA FECHA DE PRECARGA PARA GTA 6</title>
+      <link>https://Abismox.github.io/abismox/posts/rockstar-confirma-fecha-precarga-gta-6.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/rockstar-confirma-fecha-precarga-gta-6.html</guid>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>ROCKSTAR HA REVELADO LA FECHA EN QUE LOS JUGADORES PODRÁN PRECARGAR GRAND THEFT AUTO 6 PARA DISFRUTAR DESDE EL DÍA DE LANZAMIENTO.</description>
+    </item>
+    <item>
+      <title>ANALISTAS DE LA INDUSTRIA RESPONDEN A LA POLÉMICA DE GTA 6</title>
+      <link>https://Abismox.github.io/abismox/posts/analistas-opinan-sobre-gta-6.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/analistas-opinan-sobre-gta-6.html</guid>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>LOS ANALISTAS ASEGURAN QUE LA AUSENCIA DE VERSIÓN FÍSICA NO AFECTARÁ LAS VENTAS DE GTA 6.</description>
+    </item>
+    <item>
+      <title>ROCKSTAR CONFIRMA MEJORAS TECNICAS DE GTA 6 EN PLAYSTATION 5 PRO</title>
+      <link>https://Abismox.github.io/abismox/posts/rockstar-lo-hace-oficial-grand-theft-auto-6-estar-mejorado-en-playstation-5-pro.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/rockstar-lo-hace-oficial-grand-theft-auto-6-estar-mejorado-en-playstation-5-pro.html</guid>
+      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>LA PAGINA OFICIAL DE GTA 6 EN PLAYSTATION STORE CONFIRMA MEJORAS TECNICAS PARA PLAYSTATION 5 PRO</description>
     </item>
     <item>
       <title>GTA 6 YA SE PUEDE RESERVAR EN ESPANA</title>
@@ -23,30 +71,6 @@
       <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
       <category>VIDEOJUEGOS</category>
       <description>VICE CITY NOS LLAMA! LAS RESERVAS DE GTA 6 YA ESTAN ABIERTAS PARA PS5 Y XBOX SERIES.</description>
-    </item>
-    <item>
-      <title>GTA 6 YA TIENE PRECIO EN ESPANA Y ES MAS BAJO DE LO ESPERADO</title>
-      <link>https://Abismox.github.io/abismox/posts/gta-6-precio-espana.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/gta-6-precio-espana.html</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
-      <category>VIDEOJUEGOS</category>
-      <description>EL ESPERADO GRAND THEFT AUTO VI SE PUEDE RESERVAR EN FINLANDIA Y CONFIRMA SU PRECIO EN EUROPA.</description>
-    </item>
-    <item>
-      <title>DIGITAL FOUNDRY ANALIZA NUEVAS CAPTURAS DE GTA 6</title>
-      <link>https://Abismox.github.io/abismox/posts/digital-foundry-analiza-nuevas-capturas-gta-6.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/digital-foundry-analiza-nuevas-capturas-gta-6.html</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
-      <category>VIDEOJUEGOS</category>
-      <description>EL MEDIO TECNICO DIGITAL FOUNDRY DESTACA EL USO DE RAY TRACING EN GTA 6 PERO DUDA QUE SEAN EN TIEMPO REAL EN CONSOLA.</description>
-    </item>
-    <item>
-      <title>ROCKSTAR CONFIRMA FECHA DE PRECARGA PARA GTA 6</title>
-      <link>https://Abismox.github.io/abismox/posts/kebab-case.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/kebab-case.html</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
-      <category>VIDEOJUEGOS</category>
-      <description>ROCKSTAR REVELA LA FECHA DE PRECARGA PARA GRAND THEFT AUTO 6, PERMITIENDO A LOS JUGADORES COMENZAR A JUGAR DESDE EL MISMO DÍA DE LANZAMIENTO.</description>
     </item>
     <item>
       <title>ANALISTAS DE LA INDUSTRIA HABLAN SOBRE GTA 6</title>
