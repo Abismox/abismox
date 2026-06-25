@@ -27,6 +27,14 @@ log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" | tee -a "$LOG_FILE"
 }
 
+# --- Sync con origin (auto-curarse si hay divergencia) ---
+log "Sync con origin (git pull --rebase)..."
+if ! git pull --rebase origin main 2>>"$LOG_FILE"; then
+    log "ERROR: git pull --rebase falló. Probable conflicto con cambios locales."
+    exit 1
+fi
+log "Sync OK"
+
 log "=== INICIO DEPLOY ==="
 
 # --- 1. Build ---
