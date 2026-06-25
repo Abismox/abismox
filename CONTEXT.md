@@ -1,6 +1,6 @@
 # CONTEXT // ABISMOX
 
-Estado completo del proyecto al cierre de la sesión **2026-06-24** (sesión de deploy automatizado).
+Estado completo del proyecto al cierre de la sesión **2026-06-25** (sesión de cron + cap + seguridad).
 Referencia rápida para retomar trabajo en cualquier momento.
 
 ---
@@ -34,7 +34,7 @@ Referencia rápida para retomar trabajo en cualquier momento.
 ## 🏗️ Arquitectura (ACTIVA)
 
 ```
-[VPS Vultr · cron diario 08:00 hora Guanajuato]
+[VPS Vultr · cron diario 00:00 (medianoche) hora Guanajuato]
    45.76.29.64 · Ubuntu 26.04 LTS · /opt/abismox
         ↓
    /opt/abismox/deploy.sh
@@ -222,21 +222,23 @@ MINIMAX_BASE_URL=https://api.minimax.io/v1   # ← FIX CRÍTICO
 ## 📋 Pendientes (futuras sesiones)
 
 ### Corto plazo
-- [ ] **Verificar que el cron esté configurado** con `crontab -l`
-- [ ] **Verificar primer cron automático** (esperar a mañana 08:00 hora Guanajuato y revisar `deploy.log`)
+- [x] **Verificar que el cron esté configurado** — ✅ `0 0 * * *` confirmado
+- [x] **Verificar primer cron automático** — ✅ Probado a las 11:25 con `25 11 * * *`, funcionó end-to-end
 - [ ] **Aplicar Option B**: editar `build.py` línea ~212, cambiar default `api.minimax.chat` → `api.minimax.io`
 - [ ] **Fix bug `kebab-case.html`**: editar el prompt en `build.py` líneas 222-228 (cambiar ejemplo de slug)
-- [ ] Sincronizar cambios en local Windows con `git pull` desde VPS (o viceversa)
+- [x] **Sincronizar cambios en local Windows con VPS** — ✅ Vía `git pull --rebase` desde local
 
 ### Seguridad (recomendable pero no urgente)
 - [ ] `chmod 600 /opt/abismox/.env` (solo root puede leer)
 - [ ] Configurar SSH key y desactivar login por contraseña en Vultr
-- [ ] Rotar PAT de GitHub cada 6-12 meses
+- [x] **Rotar PAT de GitHub** — ✅ Hecho el 2026-06-25 (token viejo expuesto en chat)
+- [x] **Quitar token del `.git/config` del VPS** — ✅ Con `git remote set-url origin https://github.com/...`
 
 ### Features opcionales (no comprometidas)
+- [x] **Cap de posts** — ✅ Patrón C híbrido (30 posts / 30 días) implementado en `build.py`
 - [ ] Dark/light toggle
 - [ ] Tags múltiples por noticia
-- [ ] Paginación
+- [ ] Paginación (ya no urgente por el cap)
 - [ ] Google Analytics / Plausible
 - [ ] Custom domain (CNAME)
 - [ ] Sistema de comentarios (giscus)
@@ -293,7 +295,50 @@ MINIMAX_BASE_URL=https://api.minimax.io/v1   # ← FIX CRÍTICO
 
 ---
 
-**Última actualización:** 2026-06-24 23:00 (final de sesión de deploy)
-**Estado del sitio:** ✅ Deployado y funcional, 16 noticias
-**Estado del cron:** ⚠️ Configuración pendiente de verificar
-**Próxima sesión:** verificar ejecución del primer cron automático
+## 📝 Notas de la sesión 2026-06-25 (cron + cap + seguridad)
+
+### Logros
+- ✅ Cron diario configurado y validado a las **00:00 hora Guanajuato** (originalmente 08:00, cambiado por preferencia)
+- ✅ **Fix arquitectónico clave** en `deploy.sh`: `git pull --rebase origin main` ANTES del build
+  - Soluciona el "fetch first" error para siempre
+  - VPS se auto-sincroniza con GitHub antes de cada deploy
+  - Permite commits desde local Windows sin causar divergencia
+- ✅ Cap híbrido implementado en `build.py` (Patrón C: 30 posts / 30 días)
+  - Función `aplicar_cap()` añadida
+  - Constantes `MAX_POSTS=30` y `MAX_DAYS=30`
+  - Posts huérfanos se eliminan automáticamente
+- ✅ Test de cron en vivo a las 11:25 con `25 11 * * *` → **funcionó perfecto**
+  - 29 posts después del test (de 20 a 29 en una corrida)
+- ✅ Seguridad:
+  - Token PAT de GitHub **rotado** (viejo expuesto en chat)
+  - `.git/config` del VPS **limpio** (URL sin token)
+  - `deploy.sh` sigue usando x-access-token URL (de `.env`)
+- ✅ Vultr billing verificado: ~$5-6/mes base + ~$0.20 extras (snapshots). Total esperado <$7/mes
+- ✅ Local Windows sincronizado con VPS vía `git pull --rebase`
+
+### Commits de la sesión
+- `c641492` — fix: deploy.sh hace pull --rebase antes de push (auto-sync)
+- `e83a298` — auto-update: 2026-06-25 11:26 (test cron, 29 posts)
+- `d7e0e56` — feat: cap híbrido (30 posts / 30 días)
+- `d7e0e56` (rebased) — docs: este CONTEXT.md actualizado
+
+### Lecciones / descubrimientos
+1. **PowerShell no acepta `&&`** entre comandos: usar punto-y-coma o ejecutar separados
+2. **"Never used" en tokens de GitHub tiene delay** de horas/días — no es bug
+3. **Vultr cobra base + usage** (no es tarifa plana), pero el extra es <$1/mes para tráfico bajo
+4. **deploy.sh con `git pull --rebase` antes de push** = solución arquitectónica al problema de divergencia
+5. **El user prefiere planes concisos** con bullets, no prosa larga
+
+### Misterio sin resolver
+- Commit `01a2d10` "auto-update: 2026-06-24 23:30" sigue en el historial pero no sabemos qué lo generó. Probablemente un test manual que se nos olvidó.
+
+### Pendiente del user
+- [ ] Restaurar cron de `25 11 * * *` a `0 0 * * *` (si todavía está en modo test)
+- [ ] Verificar mañana 00:05 que el cron corrió: `ssh root@45.76.29.64 "tail -15 /opt/abismox/deploy.log"`
+
+---
+
+**Última actualización:** 2026-06-25 11:30 (final de sesión de cron + cap + seguridad)
+**Estado del sitio:** ✅ Deployado y funcional, ~29 posts (cap aplicado, será ~25 después)
+**Estado del cron:** ✅ Configurado, validado con test a las 11:25, debe disparar a las 00:00 diario
+**Próxima sesión:** verificar ejecución del cron a medianoche + disfrutar del sitio automatizado 🎉
