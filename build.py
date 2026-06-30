@@ -380,6 +380,7 @@ def render_post_html(noticia: Dict[str, Any], plantilla: str, todas: List[Dict[s
         "{{CONTENIDO_HTML}}": contenido_html,
         "{{READING_TIME}}": str(reading_time),
         "{{FUENTE_LABEL}}": fuente_label,
+        "{{FUENTE_LABEL_SHORT}}": "AUTO" if noticia.get("es_auto") else "MANUAL",
         "{{FUENTE_CLASS}}": fuente_class,
         "{{TITULO_CORTO}}": titulo_corto,
         "{{CANONICAL_URL}}": canonical,
@@ -407,14 +408,39 @@ def render_relacionados(noticia: Dict[str, Any], todas: List[Dict[str, Any]]) ->
     cards = []
     for n in rel:
         color = n.get("color", "#FF1493")
+        cat_n = html.escape(n.get("categoria", "general"))
+        cat_t = categoria_titulo(n.get("categoria", "general"))
         titulo = html.escape(n["titulo"])
-        preview = html.escape(n.get("preview", "")[:120])
+        titulo_corto = titulo
+        if len(titulo_corto) > 60:
+            titulo_corto = titulo_corto[:57] + "..."
+        preview_raw = (n.get("preview", "") or "").replace("\n", " ").strip()
+        preview = html.escape(preview_raw[:90])
+        fecha_iso = n.get("fecha", "")
+        try:
+            fecha_dt = datetime.fromisoformat(fecha_iso)
+            fecha_es = fecha_dt.strftime("%d/%m/%Y")
+        except Exception:
+            fecha_es = fecha_iso
+        reading_time = calcular_reading_time(n.get("contenido", "") + " " + n.get("preview", ""))
+        fuente_short = "AUTO" if n.get("es_auto") else "MANUAL"
         url = SITE_BASE_URL + url_post(n["slug"])
         cards.append(
-            f'<a class="rel-card" href="{url}" style="--card-color: {color};">'
-            f'<span class="badge {html.escape(n.get("categoria", ""))}">{categoria_titulo(n.get("categoria", ""))}</span>'
-            f'<h3 class="rel-titulo">{titulo}</h3>'
-            f'<p class="rel-preview">{preview}...</p>'
+            f'<a class="rel-card" href="{url}" style="--card-color: {color}; --cart-color: {color};">'
+            f'<div class="cartridge rel-cartridge">'
+            f'<div class="cartridge__label">'
+            f'<span class="cartridge__cat">{cat_t}</span>'
+            f'<span class="cartridge__date">{fecha_es}</span>'
+            f'</div>'
+            f'<div class="cartridge__body">'
+            f'<h3 class="cartridge__title">{titulo_corto}</h3>'
+            f'<p class="cartridge__preview">{preview}...</p>'
+            f'</div>'
+            f'<div class="cartridge__footer">'
+            f'<span class="cartridge__time">▓ {reading_time} MIN</span>'
+            f'<span class="cartridge__source">{fuente_short}</span>'
+            f'</div>'
+            f'</div>'
             f'</a>'
         )
     return (
