@@ -55,28 +55,19 @@
     }
     </script>
 </head>
-<body>
+<body class="home">
 
     <a href="#feed" class="skip-link">Saltar al contenido</a>
 
-    <header class="hero" role="banner">
-        <canvas id="snake-canvas" aria-hidden="true"></canvas>
-
-        <div class="pixel-deco deco-1" aria-hidden="true"></div>
-        <div class="pixel-deco deco-2" aria-hidden="true"></div>
-        <div class="pixel-deco deco-3" aria-hidden="true"></div>
-        <div class="pixel-deco deco-4" aria-hidden="true"></div>
-        <div class="pixel-deco deco-5" aria-hidden="true"></div>
-        <div class="pixel-deco deco-6" aria-hidden="true"></div>
-
-        <div class="hero-content">
-            <h1 class="logo">ABISMOX</h1>
-            <p class="tagline">
-                <span class="tagline-prefix">&gt;</span>GAMING + TECH ARCHIVE<span class="tagline-cursor" aria-hidden="true"></span>
-            </p>
-            <span class="online-indicator" aria-label="Estado del sistema: en línea">
-                <span class="indicator-dot" aria-hidden="true"></span>ONLINE
-            </span>
+    <header class="topbar" role="banner">
+        <div class="topbar-inner">
+            <a href="./" class="topbar-logo">ABISMOX</a>
+            <div class="topbar-meta">
+                <span class="online-indicator" aria-label="Estado del sistema: en línea">
+                    <span class="indicator-dot" aria-hidden="true"></span>ONLINE
+                </span>
+                <a href="feed.xml" class="topbar-rss" aria-label="Feed RSS">RSS</a>
+            </div>
         </div>
     </header>
 
@@ -99,24 +90,48 @@
         </div>
     </nav>
 
-    <main>
-        <div class="feed-container">
-            <div class="feed-header">
-                <h2 id="feed-title">ÚLTIMAS NOTICIAS</h2>
-                <div class="feed-stats" id="feed-stats" aria-live="polite">
+    <main id="feed" role="feed" aria-labelledby="feed-title" aria-busy="true">
+
+        <h1 id="feed-title" class="visually-hidden">Últimas noticias</h1>
+
+        <section class="console-frame" aria-label="Noticia destacada">
+            <div class="console-screen">
+                <div id="featured-panel" class="featured-panel">
+                    <div class="featured-loading">&gt; LOADING ARCHIVE<span class="loading-cursor" aria-hidden="true"></span></div>
+                </div>
+            </div>
+            <div class="console-base" aria-hidden="true">
+                <div class="console-leds">
+                    <span class="led led-red"></span>
+                    <span class="led led-green"></span>
+                </div>
+                <div class="console-vent"></div>
+            </div>
+        </section>
+
+        <section class="cartridge-section" aria-label="Cartuchos de noticias">
+            <div class="rail-header">
+                <h2 class="rail-title">▓ CARTUCHOS</h2>
+                <div class="rail-stats" id="feed-stats" aria-live="polite">
                     <span class="stat-count" id="stat-count">0</span> NOTICIAS
                     <span class="stat-sep">//</span>
                     <span class="stat-count" id="stat-cat">2</span> CATEGORÍAS
                 </div>
             </div>
-            <div id="feed" role="feed" aria-labelledby="feed-title" aria-busy="true">
-                <!-- Estado inicial: loading -->
-                <div class="loading-state">
-                    &gt; LOADING ARCHIVE<span class="loading-cursor" aria-hidden="true"></span>
-                    <div class="loading-bar">[ █░░░░░░░░░░░░░░░░░░ ]</div>
+
+            <div class="rail-wrapper">
+                <button class="rail-arrow rail-arrow-left" id="rail-prev" aria-label="Cartucho anterior" type="button">◄</button>
+
+                <div id="cartridge-rail" class="cartridge-rail" tabindex="0" role="list">
+                    <div class="rail-loading">&gt; LOADING...</div>
                 </div>
+
+                <button class="rail-arrow rail-arrow-right" id="rail-next" aria-label="Siguiente cartucho" type="button">►</button>
             </div>
-        </div>
+
+            <div class="rail-dots" id="rail-dots" aria-hidden="true"></div>
+        </section>
+
     </main>
 
     <footer role="contentinfo">
@@ -124,7 +139,7 @@
         <p class="footer-text">El archivo definitivo para gamers y techies.<br>Pixel art, nostalgia y futuro digital.</p>
 
         <div class="footer-meta">
-            <span class="meta-item">v1.1.0</span>
+            <span class="meta-item">v2.0.0</span>
             <span class="meta-sep">//</span>
             <span class="meta-item">EST. 2026</span>
             <span class="meta-sep">//</span>
@@ -139,7 +154,6 @@
         </div>
     </footer>
 
-    <script src="snake.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
