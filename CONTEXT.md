@@ -1,6 +1,6 @@
 # CONTEXT // ABISMOX
 
-Estado completo del proyecto al cierre de la sesión **2026-06-25** (sesión de cron + cap + seguridad).
+Estado completo del proyecto al cierre de la sesión **2026-06-29** (sesión de rediseño v2.0 // Cartridge Carousel).
 Referencia rápida para retomar trabajo en cualquier momento.
 
 ---
@@ -66,32 +66,56 @@ Referencia rápida para retomar trabajo en cualquier momento.
 - `5c6668a` — auto: chmod deploy.sh (primer deploy en VPS, sin datos nuevos)
 - `a1980de` — auto: fix RSS feeds (vandal/3djuegos/xataka/muycomputer)
 - `d2902ba` — auto: primer build exitoso (8 posts nuevos, total 16)
+- `c641492` — fix: deploy.sh hace pull --rebase antes de push (auto-sync)
+- `e83a298` — auto-update: 2026-06-25 11:26 (test cron, 29 posts)
+- `d7e0e56` — feat: cap hibrido (30 posts / 30 dias) para evitar crecimiento infinito
+- `4cb0bfb` — feat: v2.0 cartridge carousel - fase 1 (home)
+- `cdc2d23` — feat: v2.0 polish - transiciones featured + swipe hint + kbd helper
+- `ac9ecdf` — feat: v2.0 posts individuales con cartridge visual
 
-### Features implementadas (v1.1.0)
-*(Idénticas a sesión anterior, ya documentadas)*
-- ✅ Páginas individuales por noticia (`posts/<slug>.html`)
-- ✅ OG tags + Twitter Card en home y posts
-- ✅ JSON-LD `WebSite` en home + `BlogPosting` en cada post
-- ✅ Sitemap.xml + robots.txt
-- ✅ RSS feed.xml
-- ✅ Favicon.ico multi-res
-- ✅ OG image fija 1200×630
-- ✅ Búsqueda en vivo con debounce 150ms
-- ✅ Atajos teclado: `/` enfoca búsqueda, `Esc` limpia
-- ✅ Botón compartir con Web Share API + fallback Twitter Intent
-- ✅ Reading time estimado por card
-- ✅ Skip-link accesible
-- ✅ Breadcrumb en posts individuales
-- ✅ Posts relacionados (misma categoría, máx 3)
-- ✅ Sticky header en posts
-- ✅ Rutas relativas para GitHub Pages project site
-- ✅ `.nojekyll` para desactivar Jekyll
-- ✅ Schema `WebSite` con `SearchAction` para Google
+### Features implementadas (v2.0.0) — sesión 2026-06-29
+**Home rediseñado como "Cartridge Carousel":**
+- ✅ Topbar sticky minimal (logo ABISMOX + indicador ONLINE + RSS)
+- ✅ Console frame con pantalla CRT simulada (scanlines + vignette + base con LEDs)
+- ✅ Featured panel dinámico (muestra la noticia "insertada")
+- ✅ Carrusel horizontal scroll-snap con cartridges NES-style
+- ✅ Cada cartridge: label color categoria + titulo + preview + footer reading time + source
+- ✅ IntersectionObserver para sync featured <-> carrusel
+- ✅ Flechas ◄ ► desktop + atajos teclado (ArrowLeft/Right)
+- ✅ Indicator de dots abajo del carrusel
+- ✅ Fade-out/in transicion al cambiar featured panel (240ms)
+- ✅ Insert animation en cartridge activo (scale + brightness pulse 360ms)
+- ✅ Swipe hint mobile (desaparece tras primera interaccion)
+- ✅ Kbd helper desktop (◄ ► / / ESC)
+- ✅ Click en cartridge = scroll a center
+- ✅ Bug fix: relacionado posts como mini-cartridges en lugar de tarjetas planas
+- ✅ Mini cartridge en hero de cada post individual
 
-### Nuevas en esta sesión (deploy automatizado)
-- ✅ VPS Vultr Ubuntu 26.04 LTS operativo
-- ✅ Cron diario configurado para 08:00 hora Guanajuato (pendiente de confirmar ejecución)
-- ✅ Deploy end-to-end funcionando (RSS → IA → render → commit → push → CDN)
+**Funcionalidades v1.1.0 preservadas:**
+- Páginas individuales por noticia
+- OG tags + Twitter Card en home y posts
+- JSON-LD `WebSite` en home + `BlogPosting` en cada post
+- Sitemap.xml + robots.txt
+- RSS feed.xml
+- Favicon.ico multi-res
+- OG image fija 1200×630
+- Búsqueda en vivo con debounce 150ms (ahora filtra el carrusel)
+- Atajos teclado: `/` enfoca búsqueda, `Esc` limpia, `◄ ►` navegan cartuchos
+- Botón compartir con Web Share API + fallback Twitter Intent
+- Reading time estimado por cartridge
+- Skip-link accesible
+- Breadcrumb en posts individuales
+- Sticky header en posts
+- Rutas relativas para GitHub Pages project site
+- `.nojekyll` para desactivar Jekyll
+- Schema `WebSite` con `SearchAction` para Google
+
+### Estado del sitio (sesión 2026-06-29)
+- ✅ v2.0.0 deployed via 3 commits separados
+- ✅ 23 posts regenerados con cartridge visual en hero
+- ✅ 5 posts huerfanos eliminados (>30 dias)
+- ✅ Auto-refresh 5min en home preservado
+- ✅ VPS cron diario 00:00 hora Guanajuato (no requiere cambios)
 
 ---
 
@@ -227,6 +251,7 @@ MINIMAX_BASE_URL=https://api.minimax.io/v1   # ← FIX CRÍTICO
 - [ ] **Aplicar Option B**: editar `build.py` línea ~212, cambiar default `api.minimax.chat` → `api.minimax.io`
 - [ ] **Fix bug `kebab-case.html`**: editar el prompt en `build.py` líneas 222-228 (cambiar ejemplo de slug)
 - [x] **Sincronizar cambios en local Windows con VPS** — ✅ Vía `git pull --rebase` desde local
+- [ ] **Push los 3 commits de v2.0.0 a GitHub** — Hechos localmente, falta `git push` desde PowerShell (o esperar al cron de las 00:00 en VPS)
 
 ### Seguridad (recomendable pero no urgente)
 - [ ] `chmod 600 /opt/abismox/.env` (solo root puede leer)
@@ -244,6 +269,7 @@ MINIMAX_BASE_URL=https://api.minimax.io/v1   # ← FIX CRÍTICO
 - [ ] Sistema de comentarios (giscus)
 - [ ] Newsletter (Buttondown)
 - [ ] Internacionalización (i18n EN/ES)
+- [ ] Mejorar og-image.png para v2.0.0 (mostrar cartuchos)
 
 ---
 
@@ -338,7 +364,38 @@ MINIMAX_BASE_URL=https://api.minimax.io/v1   # ← FIX CRÍTICO
 
 ---
 
-**Última actualización:** 2026-06-25 11:30 (final de sesión de cron + cap + seguridad)
-**Estado del sitio:** ✅ Deployado y funcional, ~29 posts (cap aplicado, será ~25 después)
-**Estado del cron:** ✅ Configurado, validado con test a las 11:25, debe disparar a las 00:00 diario
+## 📝 Notas de la sesión 2026-06-29 (cartridge carousel v2.0)
+
+### Logros
+- ✅ Rediseño completo del home a "Cartridge Carousel" estilo lanzador retro
+- ✅ Reemplazo del hero (snake canvas) por console frame CRT simulado
+- ✅ Topbar sticky minimal con logo + ONLINE + RSS
+- ✅ Featured panel que muestra la noticia seleccionada (con transiciones fade)
+- ✅ Carrusel horizontal scroll-snap con cartridges NES-style
+- ✅ IntersectionObserver para sync featured ↔ carrusel
+- ✅ Flechas ◄ ► + atajos teclado ArrowLeft/Right
+- ✅ Posts individuales rediseñados con mini cartridge al lado del titulo
+- ✅ Posts relacionados como mini cartridges (no mas tarjetas planas)
+- ✅ 3 commits separados por fase
+- ✅ Tests locales: HTML parse OK, JS syntax OK, CSS braces OK, build OK
+
+### Decisiones de la sesion
+- Cartucho NES rectangular (bordes biselados, label horizontal con color de categoria)
+- Featured panel reemplaza hero (sin snake canvas)
+- Home + posts rediseñados (consistencia visual completa)
+- 3 commits separados (fases 1-2-3)
+- CSS Scroll Snap nativo (sin librerias JS)
+- prefers-reduced-motion respetado globalmente
+- Todos los datos existentes preservados (29 entries en JSON, 23 posts tras cap)
+
+### Pendiente del user
+- [ ] `git push` desde PowerShell de los 3 commits v2.0 (o esperar cron 00:00)
+- [ ] Verificar visualmente en https://Abismox.github.io/abismox/ despues de 5-10 min de cache CDN
+
+---
+
+**Última actualización:** 2026-06-29 19:50 (final de sesión de rediseño v2.0)
+**Estado del sitio:** ✅ 3 commits locales listos, push pendiente
+**Estado del cron:** ✅ Sigue activo 00:00 hora Guanajuato, push automatico al VPS
+**Estado del cap:** ✅ 23 posts activos (<=30 dias, <=30 posts)
 **Próxima sesión:** verificar ejecución del cron a medianoche + disfrutar del sitio automatizado 🎉
