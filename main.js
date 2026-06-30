@@ -91,14 +91,14 @@ function renderFeed(filtro = 'todos', query = '') {
     }
 
     activeIndex = 0;
-    renderFeatured(filteredNoticias[activeIndex]);
+    renderFeatured(filteredNoticias[activeIndex], false);
     renderRail(filteredNoticias);
     updateArrowsState();
 }
 
 
 /* ============== RENDER FEATURED PANEL ============== */
-function renderFeatured(noticia) {
+function renderFeatured(noticia, animate = true) {
     const panel = document.getElementById('featured-panel');
     if (!panel || !noticia) return;
 
@@ -117,28 +117,43 @@ function renderFeatured(noticia) {
             : noticia.contenido)
         : (noticia.preview || '');
 
-    panel.innerHTML = `
-        <div class="featured-meta">
-            <span class="badge ${escapeAttr(noticia.categoria || 'general')}">${escapeHtml(formatCategory(noticia.categoria))}</span>
-            <time class="meta-fecha" datetime="${escapeAttr(noticia.fecha)}">${escapeHtml(formatDate(noticia.fecha))}</time>
-            <span class="meta-sep" aria-hidden="true">//</span>
-            <span class="meta-lectura">▓ ${noticia._reading_time || 1} MIN</span>
-            ${noticia.fuente ? `<span class="meta-sep" aria-hidden="true">//</span><span class="meta-fuente ${noticia.es_auto ? 'auto' : ''}">${noticia.es_auto ? 'FUENTE: AGENTE' : 'FUENTE: MANUAL'}</span>` : ''}
-        </div>
-        <h2 class="featured-titulo">${escapeHtml(noticia.titulo)}</h2>
-        ${noticia.preview ? `<p class="featured-preview">${escapeHtml(noticia.preview)}</p>` : ''}
-        ${contenido ? `<p class="featured-contenido">${escapeHtml(contenido)}</p>` : ''}
-        <div class="featured-actions">
-            ${internalUrl ? `<a class="card-cta" href="${internalUrl}" aria-label="Leer archivo completo: ${escapeAttr(noticia.titulo)}">LEER ARCHIVO</a>` : ''}
-            ${hasExternal ? `<a class="card-cta secondary" href="${escapeAttr(noticia.link_externo)}" target="_blank" rel="noopener noreferrer" aria-label="Abrir fuente original">FUENTE ORIGINAL</a>` : ''}
-            <button class="share-btn" id="featured-share-btn" type="button" aria-label="Compartir: ${escapeAttr(noticia.titulo)}">▓ COMPARTIR</button>
-        </div>
-    `;
+    const apply = () => {
+        panel.innerHTML = `
+            <div class="featured-meta">
+                <span class="badge ${escapeAttr(noticia.categoria || 'general')}">${escapeHtml(formatCategory(noticia.categoria))}</span>
+                <time class="meta-fecha" datetime="${escapeAttr(noticia.fecha)}">${escapeHtml(formatDate(noticia.fecha))}</time>
+                <span class="meta-sep" aria-hidden="true">//</span>
+                <span class="meta-lectura">▓ ${noticia._reading_time || 1} MIN</span>
+                ${noticia.fuente ? `<span class="meta-sep" aria-hidden="true">//</span><span class="meta-fuente ${noticia.es_auto ? 'auto' : ''}">${noticia.es_auto ? 'FUENTE: AGENTE' : 'FUENTE: MANUAL'}</span>` : ''}
+            </div>
+            <h2 class="featured-titulo">${escapeHtml(noticia.titulo)}</h2>
+            ${noticia.preview ? `<p class="featured-preview">${escapeHtml(noticia.preview)}</p>` : ''}
+            ${contenido ? `<p class="featured-contenido">${escapeHtml(contenido)}</p>` : ''}
+            <div class="featured-actions">
+                ${internalUrl ? `<a class="card-cta" href="${internalUrl}" aria-label="Leer archivo completo: ${escapeAttr(noticia.titulo)}">LEER ARCHIVO</a>` : ''}
+                ${hasExternal ? `<a class="card-cta secondary" href="${escapeAttr(noticia.link_externo)}" target="_blank" rel="noopener noreferrer" aria-label="Abrir fuente original">FUENTE ORIGINAL</a>` : ''}
+                <button class="share-btn" id="featured-share-btn" type="button" aria-label="Compartir: ${escapeAttr(noticia.titulo)}">▓ COMPARTIR</button>
+            </div>
+        `;
 
-    const shareBtn = document.getElementById('featured-share-btn');
-    if (shareBtn) {
-        shareBtn.addEventListener('click', () => shareNoticia(noticia, internalUrl));
+        const shareBtn = document.getElementById('featured-share-btn');
+        if (shareBtn) {
+            shareBtn.addEventListener('click', () => shareNoticia(noticia, internalUrl));
+        }
+    };
+
+    if (!animate) {
+        apply();
+        return;
     }
+
+    panel.classList.add('is-changing');
+    setTimeout(() => {
+        apply();
+        panel.classList.remove('is-changing');
+        panel.classList.add('is-entering');
+        setTimeout(() => panel.classList.remove('is-entering'), 260);
+    }, 140);
 }
 
 
@@ -352,17 +367,37 @@ function setupArrows() {
     const prevBtn = document.getElementById('rail-prev');
     const nextBtn = document.getElementById('rail-next');
 
+    const dismissSwipeHint = () => hideSwipeHint();
+
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
+            dismissSwipeHint();
             if (activeIndex > 0) focusCartridge(activeIndex - 1);
         });
     }
 
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
+            dismissSwipeHint();
             if (activeIndex < filteredNoticias.length - 1) focusCartridge(activeIndex + 1);
         });
     }
+
+    const rail = document.getElementById('cartridge-rail');
+    if (rail) {
+        rail.addEventListener('scroll', dismissSwipeHint, { passive: true });
+        rail.addEventListener('touchstart', dismissSwipeHint, { passive: true });
+    }
+}
+
+
+/* ============== HIDE SWIPE HINT ============== */
+let swipeHintHidden = false;
+function hideSwipeHint() {
+    if (swipeHintHidden) return;
+    swipeHintHidden = true;
+    const hint = document.getElementById('swipe-hint');
+    if (hint) hint.classList.add('is-hidden');
 }
 
 

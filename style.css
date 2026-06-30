@@ -527,6 +527,106 @@ p, span, button {
     z-index: 2;
 }
 
+/* ============== FEATURED PANEL // TRANSICIONES ============== */
+.featured-panel.is-changing {
+    animation: fade-out 140ms ease forwards;
+}
+
+.featured-panel.is-entering {
+    animation: fade-in 240ms ease forwards;
+}
+
+@keyframes fade-out {
+    from { opacity: 1; transform: translateY(0); }
+    to   { opacity: 0; transform: translateY(-6px); }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ============== CARTRIDGE // INSERT ANIMATION ============== */
+@keyframes cartridge-insert {
+    0%   { transform: scale(1.08) translateY(-4px); filter: brightness(2) saturate(1.4); }
+    50%  { filter: brightness(1.4) saturate(1.2); }
+    100% { transform: scale(1.08) translateY(-4px); filter: brightness(1) saturate(1); }
+}
+
+.cartridge.is-active {
+    animation: cartridge-insert 360ms ease-out;
+}
+
+
+/* ============== SWIPE HINT (mobile) ============== */
+.swipe-hint {
+    display: none;
+    text-align: center;
+    font-family: var(--font-titulos);
+    font-size: 8px;
+    color: var(--cyan);
+    letter-spacing: 0.18em;
+    padding: 8px 0 4px;
+    opacity: 0.7;
+    animation: swipe-pulse 2s ease-in-out infinite;
+}
+
+.swipe-hint::before {
+    content: "◄ ";
+    color: var(--magenta);
+}
+
+.swipe-hint::after {
+    content: " ►";
+    color: var(--magenta);
+}
+
+@keyframes swipe-pulse {
+    0%, 100% { opacity: 0.4; transform: translateX(0); }
+    50%      { opacity: 0.9; transform: translateX(0); }
+}
+
+.swipe-hint.is-hidden {
+    animation: fade-out 200ms ease forwards;
+    pointer-events: none;
+}
+
+@media (max-width: 720px) {
+    .swipe-hint {
+        display: block;
+    }
+}
+
+
+/* ============== KBD HELPER (optional info) ============== */
+.kbd-helper {
+    text-align: center;
+    font-family: var(--font-titulos);
+    font-size: 8px;
+    color: var(--gris-claro);
+    letter-spacing: 0.12em;
+    padding: 8px 0 4px;
+    margin-top: 6px;
+}
+
+.kbd-helper kbd {
+    display: inline-block;
+    background-color: var(--negro-suave);
+    border: 1px solid var(--cyan);
+    padding: 2px 6px;
+    margin: 0 2px;
+    font-family: var(--font-titulos);
+    font-size: 8px;
+    color: var(--cyan);
+}
+
+@media (max-width: 720px) {
+    .kbd-helper {
+        display: none;
+    }
+}
+
 .featured-meta {
     display: flex;
     flex-wrap: wrap;
