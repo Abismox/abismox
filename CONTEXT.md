@@ -56,7 +56,7 @@ Referencia rápida para retomar trabajo en cualquier momento.
 
 ---
 
-## 📦 Versión actual: v1.1.0 (con automatización VPS v1.2.0-oficial)
+## 📦 Versión actual: v2.1.0 (con automatización VPS v1.2.0-oficial)
 
 ### Commits relevantes
 - `d807009` — Sitio original v1.0.0
@@ -72,50 +72,67 @@ Referencia rápida para retomar trabajo en cualquier momento.
 - `4cb0bfb` — feat: v2.0 cartridge carousel - fase 1 (home)
 - `cdc2d23` — feat: v2.0 polish - transiciones featured + swipe hint + kbd helper
 - `ac9ecdf` — feat: v2.0 posts individuales con cartridge visual
+- `0505050` — feat: v2.1.0 polish + fix post-hero sin cartucho (8 mejoras + sanitizer)
 
-### Features implementadas (v2.0.0) — sesión 2026-06-29
-**Home rediseñado como "Cartridge Carousel":**
-- ✅ Topbar sticky minimal (logo ABISMOX + indicador ONLINE + RSS)
-- ✅ Console frame con pantalla CRT simulada (scanlines + vignette + base con LEDs)
-- ✅ Featured panel dinámico (muestra la noticia "insertada")
-- ✅ Carrusel horizontal scroll-snap con cartridges NES-style
-- ✅ Cada cartridge: label color categoria + titulo + preview + footer reading time + source
-- ✅ IntersectionObserver para sync featured <-> carrusel
-- ✅ Flechas ◄ ► desktop + atajos teclado (ArrowLeft/Right)
-- ✅ Indicator de dots abajo del carrusel
-- ✅ Fade-out/in transicion al cambiar featured panel (240ms)
-- ✅ Insert animation en cartridge activo (scale + brightness pulse 360ms)
-- ✅ Swipe hint mobile (desaparece tras primera interaccion)
-- ✅ Kbd helper desktop (◄ ► / / ESC)
-- ✅ Click en cartridge = scroll a center
-- ✅ Bug fix: relacionado posts como mini-cartridges en lugar de tarjetas planas
-- ✅ Mini cartridge en hero de cada post individual
+### Features implementadas (v2.1.0) — sesión 2026-07-01
+**8 mejoras visuales en home:**
+- ✅ Boot sequence CRT (flash + scaleY 0→80 en 600ms con overlay full-screen)
+- ✅ Glitch RGB al cambiar cartucho (text-shadow cyan/magenta con steps animation 280ms)
+- ✅ Panel tearing sutil (clip-path inset en cambios de featured)
+- ✅ Fondo grid retro (linear-gradient 48px magenta+cyan) + vignette global
+- ✅ Stars layer (60 puntos blancos con twinkle random via CSS vars)
+- ✅ Scan-line animado (línea cyan barriendo CRT cada 4s)
+- ✅ Aurora gradient en featured panel (background 300% con animation 8s)
+- ✅ Loading "MEMORY CHECK" tipo BIOS (7 mensajes secuenciales con colores semánticos)
 
-**Funcionalidades v1.1.0 preservadas:**
-- Páginas individuales por noticia
+**Micro-interacciones:**
+- ✅ Hover 3D tilt en cartuchos (rotateX/rotateY según mouse position)
+- ✅ Sound effects opcionales (Web Audio API: boot/click/insert/filter con toggle en topbar)
+- ✅ Counter animado 0→N (cubic ease-out con text-shadow verde durante animación)
+- ✅ Tooltips 8-bit en elementos con data-tip (bubble pixel-style con blink 2s)
+- ✅ prefers-reduced-motion respetado en boot, tilt, aurora, scan-line
+
+**Post-hero rediseñado (FIX CRÍTICO):**
+- ❌ REMOVIDO: cartucho mini en hero del post (era redundante con el home)
+- ❌ REMOVIDO: watermark decorativo (bug CSS + redundancia)
+- ✅ NUEVO: info-bar limpia (eyebrow "● NOW READING" + badge + título + meta + línea gradient animada)
+- ✅ Borde lateral 6px color de categoría + dashed border-bottom morado
+- ✅ Background radial-gradient con color de categoría (12% intensidad esquina)
+
+**Defensa sistémica en `build.py`:**
+- ✅ Nueva función `sanitize_post_html()` ejecuta al final de cada render
+- ✅ Strip automático de cualquier `post-cartridge`, `post-cartridge-watermark`, `post-hero-flex`, `post-hero-text`, `cartridge post-cartridge__mini`
+- ✅ Garantiza que NINGÚN post (actual o futuro) tenga el cartucho redundante, aunque el template se corrompa
+
+**Funcionalidades v2.0 preservadas:**
+- Cartridge carousel home con featured panel, IntersectionObserver, flechas, dots, swipe hint, kbd helper
+- Posts individuales con cartridge visual en hero (ahora REEMPLAZADO por info-bar)
 - OG tags + Twitter Card en home y posts
 - JSON-LD `WebSite` en home + `BlogPosting` en cada post
-- Sitemap.xml + robots.txt
-- RSS feed.xml
-- Favicon.ico multi-res
-- OG image fija 1200×630
-- Búsqueda en vivo con debounce 150ms (ahora filtra el carrusel)
+- Sitemap.xml + robots.txt + RSS feed.xml
+- Búsqueda en vivo con debounce 150ms
 - Atajos teclado: `/` enfoca búsqueda, `Esc` limpia, `◄ ►` navegan cartuchos
 - Botón compartir con Web Share API + fallback Twitter Intent
 - Reading time estimado por cartridge
-- Skip-link accesible
-- Breadcrumb en posts individuales
-- Sticky header en posts
-- Rutas relativas para GitHub Pages project site
+- Skip-link accesible + breadcrumb + sticky header
+- Botón SOUND en topbar con persistencia localStorage (`abismox_sound`)
+- Tooltips data-tip en topbar, filtros y cartuchos
+- Auto-refresh 5min en home
 - `.nojekyll` para desactivar Jekyll
-- Schema `WebSite` con `SearchAction` para Google
 
-### Estado del sitio (sesión 2026-06-29)
-- ✅ v2.0.0 deployed via 3 commits separados
-- ✅ 23 posts regenerados con cartridge visual en hero
-- ✅ 5 posts huerfanos eliminados (>30 dias)
-- ✅ Auto-refresh 5min en home preservado
-- ✅ VPS cron diario 00:00 hora Guanajuato (no requiere cambios)
+### Estado del sitio (sesión 2026-07-01)
+- ✅ v2.1.0 deployed via commit `0505050` pusheado a main
+- ✅ GitHub Pages redespliega automáticamente (~30s después del push)
+- ✅ 23 posts regenerados con info-bar limpia (sin cartucho)
+- ✅ 8 mejoras visuales activas en home
+- ✅ VPS cron diario 00:00 hora Guanajuato regenera desde nuevo template
+- ✅ Sanitizer defensivo garantiza que el cartucho no vuelva a aparecer
+
+### Decisiones de la sesión 2026-07-01
+- Adoptado: 8 mejoras de diseño como v2.1.0
+- Adoptado: rediseño post-hero con info-bar (cartucho eliminado del post)
+- Adoptado: sanitizer defensivo en `build.py` (post-process anti-cartucho)
+- Decisión de diseño (justificada por skill `frontend-design`): "Cut any decoration that does not serve the brief" — el cartucho en el post no servía a la lectura, era redundante con el home
 
 ---
 
@@ -204,12 +221,15 @@ MINIMAX_BASE_URL=https://api.minimax.io/v1   # ← FIX CRÍTICO
 
 ---
 
-## 🎨 Diseño (sin cambios)
+## 🎨 Diseño (v2.1.0)
 
-- **Estética:** retro N64/PS1 pixel art
-- **Tipografías:** Press Start 2P (titulos), VT323 (cuerpo)
+- **Estética:** retro N64/PS1 pixel art + CRT + arcade
+- **Tipografías:** Press Start 2P (titulos + eyebrows + badges), VT323 (cuerpo)
 - **Colores:** magenta `#FF1493`, cyan `#00FFFF`, verde `#00FF00`, naranja `#FF8C00`, morado `#7B2CBF`, rojo `#FF0000`
+- **Animaciones clave:** boot sequence (600ms CRT power-on), glitch RGB (280ms), panel tearing, stars twinkle (CSS vars random), aurora gradient (8s loop), scan-line CRT (4s sweep), 3D tilt (mouse follow), MEMORY CHECK BIOS loading
+- **Micro-interacciones:** counter animado (cubic ease-out), tooltips 8-bit, sound effects opcionales (Web Audio API)
 - **Layout:** mobile-first, 1 col móvil → 2 cols tablet (≥600px) → 3 cols desktop (≥900px)
+- **Post hero:** info-bar limpia (eyebrow + badge + título + meta + línea gradient), sin cartucho redundante con el home
 
 ---
 
@@ -394,8 +414,34 @@ MINIMAX_BASE_URL=https://api.minimax.io/v1   # ← FIX CRÍTICO
 
 ---
 
-**Última actualización:** 2026-06-29 19:50 (final de sesión de rediseño v2.0)
-**Estado del sitio:** ✅ 3 commits locales listos, push pendiente
-**Estado del cron:** ✅ Sigue activo 00:00 hora Guanajuato, push automatico al VPS
+## 📝 Notas de la sesión 2026-07-01 (v2.1.0 polish + fix post-hero)
+
+### Logros
+- ✅ 8 mejoras visuales integradas (boot, glitch, stars, MEMORY CHECK, 3D tilt, aurora, sound, counter + tooltips)
+- ✅ Post-hero rediseñado: info-bar limpia sin cartucho redundante
+- ✅ Sanitizer defensivo `sanitize_post_html()` en `build.py` (strip automático anti-cartucho)
+- ✅ 23 posts regenerados con nuevo template
+- ✅ Commit `0505050` pusheado a main
+- ✅ GitHub Pages redespliega automáticamente (~30s)
+- ✅ Sin cambios necesarios en VPS (template se regenera desde git)
+
+### Decisiones de diseño (argumentadas con skill `frontend-design`)
+- "The hero is a thesis": en el post, el protagonista es el contenido, no un cartucho decorativo
+- "Spend your boldness in one place": la identidad cartucho ya está en el home, no duplicarla en posts
+- "Cut any decoration that does not serve the brief": el cartucho en el post era ruido visual redundante
+- "Less is more": evitar el efecto "AI-generated generic decoration"
+
+### Pendientes para futuras sesiones
+- [ ] Fix bug `kebab-case.html` (prompt slug en `build.py`)
+- [ ] Editar default `api.minimax.chat → api.minimax.io` en `build.py`
+- [ ] Regenerar `og-image.png` para v2.1.0 (mostrar info-bar en vez de cartucho)
+- [ ] Considerar eliminar también los `.rel-cartridge` en "OTRAS DE X" (opcional, usuario debe decidir)
+- [ ] Dark/light toggle (descartado hasta nuevo aviso)
+
+---
+
+**Última actualización:** 2026-07-01 09:00 (final de sesión v2.1.0)
+**Estado del sitio:** ✅ Commit `0505050` pusheado, GitHub Pages redesplegando
+**Estado del cron:** ✅ Sigue activo 00:00 hora Guanajuato, regenera desde nuevo template
 **Estado del cap:** ✅ 23 posts activos (<=30 dias, <=30 posts)
-**Próxima sesión:** verificar ejecución del cron a medianoche + disfrutar del sitio automatizado 🎉
+**Próxima sesión:** verificar v2.1.0 en GitHub Pages + considerar mejoras adicionales
