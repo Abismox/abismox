@@ -63,33 +63,21 @@
     <main id="contenido">
         <article class="post" data-categoria="{{CATEGORIA}}">
             <header class="post-hero" style="--card-color: {{COLOR}};">
-                <div class="post-hero-flex">
-                    <div class="post-cartridge" aria-hidden="true">
-                        <div class="cartridge post-cartridge__mini">
-                            <div class="cartridge__label">
-                                <span class="cartridge__cat">{{CATEGORIA_TITULO}}</span>
-                                <span class="cartridge__date">{{FECHA}}</span>
-                            </div>
-                            <div class="cartridge__body">
-                                <h3 class="cartridge__title">{{TITULO_CORTO}}</h3>
-                            </div>
-                            <div class="cartridge__footer">
-                                <span class="cartridge__time">▓ {{READING_TIME}} MIN</span>
-                                <span class="cartridge__source {{FUENTE_CLASS}}">{{FUENTE_LABEL_SHORT}}</span>
-                            </div>
-                        </div>
+                <div class="post-hero-info">
+                    <div class="post-hero-eyebrow">
+                        <span class="post-hero-eyebrow-dot" aria-hidden="true"></span>
+                        <span>NOW READING</span>
                     </div>
-                    <div class="post-hero-text">
-                        <span class="badge {{CATEGORIA}}">{{CATEGORIA_TITULO}}</span>
-                        <h1 class="post-titulo">{{TITULO}}</h1>
-                        <div class="post-meta">
-                            <time class="meta-fecha" datetime="{{FECHA_ISO}}">{{FECHA}}</time>
-                            <span class="meta-sep" aria-hidden="true">//</span>
-                            <span class="meta-lectura">▓ {{READING_TIME}} MIN LECTURA</span>
-                            <span class="meta-sep" aria-hidden="true">//</span>
-                            <span class="meta-fuente {{FUENTE_CLASS}}">{{FUENTE_LABEL}}</span>
-                        </div>
+                    <span class="badge {{CATEGORIA}}">{{CATEGORIA_TITULO}}</span>
+                    <h1 class="post-titulo">{{TITULO}}</h1>
+                    <div class="post-meta">
+                        <time class="meta-fecha" datetime="{{FECHA_ISO}}">{{FECHA}}</time>
+                        <span class="meta-sep" aria-hidden="true">//</span>
+                        <span class="meta-lectura">▓ {{READING_TIME}} MIN LECTURA</span>
+                        <span class="meta-sep" aria-hidden="true">//</span>
+                        <span class="meta-fuente {{FUENTE_CLASS}}">{{FUENTE_LABEL}}</span>
                     </div>
+                    <div class="post-hero-line" aria-hidden="true"></div>
                 </div>
             </header>
 

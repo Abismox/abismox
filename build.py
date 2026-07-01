@@ -396,7 +396,36 @@ def render_post_html(noticia: Dict[str, Any], plantilla: str, todas: List[Dict[s
     out = plantilla
     for k, v in reemplazos.items():
         out = out.replace(k, v)
-    return out
+    return sanitize_post_html(out)
+
+
+def sanitize_post_html(html_str: str) -> str:
+    """
+    Defensa sistémica anti-cartucho.
+    Elimina cualquier rastro del post-hero viejo (cartucho en el hero)
+    por si alguna versión cacheada del template se cuela.
+    Garantiza que NINGÚN post tenga el recuadro redundante,
+    ni en regeneraciones actuales ni futuras.
+    """
+    import re
+
+    patrones_a_eliminar = [
+        # post-cartridge div (con todo su contenido anidado)
+        (r'<div\s+class="post-cartridge"[^>]*>.*?</div>\s*</div>', re.DOTALL),
+        # post-cartridge__mini (variante)
+        (r'<div\s+class="cartridge\s+post-cartridge__mini"[^>]*>.*?</div>\s*</div>', re.DOTALL),
+        # post-cartridge-watermark
+        (r'<div\s+class="post-cartridge-watermark"[^>]*>.*?</div>\s*', re.DOTALL),
+        # post-hero-flex (layout viejo side-by-side)
+        (r'<div\s+class="post-hero-flex"[^>]*>.*?</div>\s*</div>', re.DOTALL),
+        # post-hero-text standalone
+        (r'<div\s+class="post-hero-text"[^>]*>.*?</div>', re.DOTALL),
+    ]
+
+    for patron, flags in patrones_a_eliminar:
+        html_str = re.sub(patron, '', html_str, flags=flags)
+
+    return html_str
 
 
 def render_relacionados(noticia: Dict[str, Any], todas: List[Dict[str, Any]]) -> str:

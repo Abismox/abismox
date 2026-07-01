@@ -59,6 +59,12 @@
 
     <a href="#feed" class="skip-link">Saltar al contenido</a>
 
+    <div class="boot-overlay" id="boot-overlay" aria-hidden="true">
+        <div class="boot-line"></div>
+    </div>
+
+    <div class="stars-layer" id="stars-layer" aria-hidden="true"></div>
+
     <header class="topbar" role="banner">
         <div class="topbar-inner">
             <a href="./" class="topbar-logo">ABISMOX</a>
@@ -66,7 +72,11 @@
                 <span class="online-indicator" aria-label="Estado del sistema: en línea">
                     <span class="indicator-dot" aria-hidden="true"></span>ONLINE
                 </span>
-                <a href="feed.xml" class="topbar-rss" aria-label="Feed RSS">RSS</a>
+                <button id="sound-toggle" class="sound-toggle is-muted" type="button"
+                        aria-pressed="false" data-tip="SONIDO OFF" data-tip-pos="bottom">
+                    <span class="sound-icon" aria-hidden="true"></span>SOUND
+                </button>
+                <a href="feed.xml" class="topbar-rss" aria-label="Feed RSS" data-tip="FEED RSS">RSS</a>
             </div>
         </div>
     </header>
@@ -84,9 +94,9 @@
             <button id="search-clear" class="search-clear" aria-label="Limpiar búsqueda" type="button">×</button>
         </div>
         <div class="filter-buttons" role="group" aria-label="Filtros de categoría">
-            <button class="filtro-btn active" data-filter="todos" aria-pressed="true">TODO</button>
-            <button class="filtro-btn" data-filter="videojuegos" aria-pressed="false">VIDEOJUEGOS</button>
-            <button class="filtro-btn" data-filter="tecnologia" aria-pressed="false">TECNOLOGÍA</button>
+            <button class="filtro-btn" data-filter="todos" aria-pressed="true" data-tip="TODAS">TODO</button>
+            <button class="filtro-btn" data-filter="videojuegos" aria-pressed="false" data-tip="GAMING">VIDEOJUEGOS</button>
+            <button class="filtro-btn" data-filter="tecnologia" aria-pressed="false" data-tip="TECH">TECNOLOGÍA</button>
         </div>
     </nav>
 
@@ -96,8 +106,9 @@
 
         <section class="console-frame" aria-label="Noticia destacada">
             <div class="console-screen">
+                <div class="scan-line" aria-hidden="true"></div>
                 <div id="featured-panel" class="featured-panel">
-                    <div class="featured-loading">&gt; LOADING ARCHIVE<span class="loading-cursor" aria-hidden="true"></span></div>
+                    <div id="boot-messages" class="boot-messages" aria-live="polite"></div>
                 </div>
             </div>
             <div class="console-base" aria-hidden="true">
@@ -115,7 +126,7 @@
                 <div class="rail-stats" id="feed-stats" aria-live="polite">
                     <span class="stat-count" id="stat-count">0</span> NOTICIAS
                     <span class="stat-sep">//</span>
-                    <span class="stat-count" id="stat-cat">2</span> CATEGORÍAS
+                    <span class="stat-count" id="stat-cat">0</span> CATEGORÍAS
                 </div>
             </div>
 
@@ -145,7 +156,7 @@
         <p class="footer-text">El archivo definitivo para gamers y techies.<br>Pixel art, nostalgia y futuro digital.</p>
 
         <div class="footer-meta">
-            <span class="meta-item">v2.0.0</span>
+            <span class="meta-item">v2.1.0</span>
             <span class="meta-sep">//</span>
             <span class="meta-item">EST. 2026</span>
             <span class="meta-sep">//</span>

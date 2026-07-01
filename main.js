@@ -1,6 +1,8 @@
 /* ============================================
    ABISMOX // main.js
-   v2.0 // Cartridge Carousel + Featured Panel
+   v2.1 // Cartridge Carousel + Featured Panel
+        + Boot sequence + Glitch + Stars + Aurora
+        + Tilt 3D + Sound + Counter + Tooltips
    ============================================ */
 
 
@@ -14,11 +16,16 @@ let refreshInterval = null;
 let searchDebounce = null;
 let observer = null;
 let isProgrammaticScroll = false;
+let audioCtx = null;
+let soundEnabled = false;
+let bootSequenceDone = false;
 
 const JSON_URL = './data/noticias.json';
 const REFRESH_TIME = 5 * 60 * 1000;
 const CONTENT_PREVIEW_LENGTH = 300;
 const WORDS_PER_MINUTE = 200;
+const STORAGE_KEY_SOUND = 'abismox_sound';
+const BOOT_DURATION_MS = 900;
 
 
 /* ============== CARGAR NOTICIAS ============== */
@@ -138,7 +145,23 @@ function renderFeatured(noticia, animate = true) {
 
         const shareBtn = document.getElementById('featured-share-btn');
         if (shareBtn) {
-            shareBtn.addEventListener('click', () => shareNoticia(noticia, internalUrl));
+            shareBtn.addEventListener('click', () => {
+                playClick();
+                shareNoticia(noticia, internalUrl);
+            });
+        }
+
+        if (animate) {
+            const titulo = panel.querySelector('.featured-titulo');
+            if (titulo) {
+                titulo.classList.remove('is-glitch');
+                void titulo.offsetWidth;
+                titulo.classList.add('is-glitch');
+            }
+            panel.classList.remove('is-tearing');
+            void panel.offsetWidth;
+            panel.classList.add('is-tearing');
+            setTimeout(() => panel.classList.remove('is-tearing'), 220);
         }
     };
 
@@ -202,9 +225,12 @@ function createCartridge(noticia, index) {
         card.style.setProperty('--cart-color', noticia.color);
     }
 
+    const cat = formatCategory(noticia.categoria);
+    const tooltipText = `${cat} · ${escapeAttr(noticia.titulo.substring(0, 40))}${noticia.titulo.length > 40 ? '...' : ''}`;
+
     card.innerHTML = `
         <div class="cartridge__label">
-            <span class="cartridge__cat">${escapeHtml(formatCategory(noticia.categoria))}</span>
+            <span class="cartridge__cat">${escapeHtml(cat)}</span>
             <span class="cartridge__date">${escapeHtml(formatDate(noticia.fecha))}</span>
         </div>
         <div class="cartridge__body">
@@ -216,13 +242,39 @@ function createCartridge(noticia, index) {
             <span class="cartridge__source ${noticia.es_auto ? '' : 'manual'}">${noticia.es_auto ? 'AUTO' : 'MANUAL'}</span>
         </div>
     `;
+    card.setAttribute('data-tip', tooltipText);
+    card.setAttribute('data-tip-pos', 'top');
 
-    card.addEventListener('click', () => focusCartridge(index));
+    card.addEventListener('click', () => {
+        playClick();
+        focusCartridge(index);
+    });
     card.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
+            playClick();
             focusCartridge(index);
         }
+    });
+
+    /* Hover 3D tilt */
+    card.addEventListener('mousemove', (e) => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        const maxTilt = 8;
+        const isActive = card.classList.contains('is-active');
+        const baseTransform = isActive
+            ? `scale(1.08) translateY(-4px)`
+            : `translateY(-6px)`;
+        card.classList.add('is-tilting');
+        card.style.transform = `${baseTransform} rotateY(${x * maxTilt}deg) rotateX(${-y * maxTilt}deg)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+        card.classList.remove('is-tilting');
+        card.style.transform = '';
     });
 
     return card;
@@ -244,6 +296,7 @@ function focusCartridge(index) {
         isProgrammaticScroll = false;
     }, 500);
 
+    playInsert();
     updateActiveCartridge(index, true);
 }
 
@@ -404,11 +457,34 @@ function hideSwipeHint() {
 /* ============== ACTUALIZAR ESTADÍSTICAS ============== */
 function updateFeedStats(count) {
     const statCount = document.getElementById('stat-count');
-    if (statCount) statCount.textContent = count;
+    if (statCount) animateCounter(statCount, count);
 
     const categorias = new Set(allNoticias.map(n => n.categoria).filter(Boolean));
     const statCat = document.getElementById('stat-cat');
-    if (statCat) statCat.textContent = categorias.size;
+    if (statCat) animateCounter(statCat, categorias.size);
+}
+
+
+/* ============== COUNTER ANIMADO 0 → N ============== */
+function animateCounter(el, target, duration = 700) {
+    if (!el) return;
+    const start = parseInt(el.textContent, 10) || 0;
+    if (start === target) return;
+    const startTime = performance.now();
+
+    el.classList.add('is-counting');
+    setTimeout(() => el.classList.remove('is-counting'), duration + 50);
+
+    const step = (now) => {
+        const elapsed = now - startTime;
+        const t = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - t, 3);
+        const current = Math.round(start + (target - start) * eased);
+        el.textContent = current;
+        if (t < 1) requestAnimationFrame(step);
+        else el.textContent = target;
+    };
+    requestAnimationFrame(step);
 }
 
 
@@ -467,12 +543,14 @@ function setupFilters() {
     buttons.forEach(btn => {
         btn.addEventListener('click', () => {
             const filtro = btn.dataset.filter || 'todos';
+            if (btn.classList.contains('active')) return;
             buttons.forEach(b => {
                 b.classList.remove('active');
                 b.setAttribute('aria-pressed', 'false');
             });
             btn.classList.add('active');
             btn.setAttribute('aria-pressed', 'true');
+            playFilter();
             renderFeed(filtro, currentQuery);
         });
     });
@@ -620,8 +698,220 @@ function hexToRgba(hex, alpha = 1) {
 }
 
 
+/* ============================================
+   v2.1 // NUEVAS FEATURES
+   ============================================ */
+
+
+/* ============== BOOT SEQUENCE ============== */
+function runBootSequence() {
+    const overlay = document.getElementById('boot-overlay');
+    if (!overlay) return;
+
+    /* Si reduced-motion, saltar todo */
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        overlay.style.display = 'none';
+        runMemoryCheck();
+        bootSequenceDone = true;
+        return;
+    }
+
+    /* Iniciar memory check en paralelo (mensajes en el panel) */
+    runMemoryCheck();
+
+    /* Tras 320ms, marcar como done para que haga fade */
+    setTimeout(() => {
+        overlay.classList.add('is-done');
+    }, 320);
+
+    /* Tras 900ms total, ocultar completamente y marcar flag */
+    setTimeout(() => {
+        overlay.style.display = 'none';
+        bootSequenceDone = true;
+        playBootSound();
+    }, BOOT_DURATION_MS);
+}
+
+
+/* ============== MEMORY CHECK (loading BIOS-style) ============== */
+const BOOT_MESSAGES = [
+    { text: 'ABISMOX OS v2.1 // CARTRIDGE BAY', cls: '' },
+    { text: 'INITIALIZING SYSTEM............ OK', cls: 'boot-msg--ok', delay: 320 },
+    { text: 'SCANNING RSS FEEDS [4/4]....... OK', cls: 'boot-msg--ok', delay: 280 },
+    { text: 'LOADING NEURAL NETWORK......... OK', cls: 'boot-msg--ok', delay: 260 },
+    { text: 'CHECKING ARCHIVE INTEGRITY..... OK', cls: 'boot-msg--ok', delay: 240 },
+    { text: 'CARTRIDGE BAY EMPTY // WAITING', cls: 'boot-msg--warn', delay: 220 },
+    { text: '> READY // INSERT A CARTRIDGE', cls: 'boot-msg--ready', delay: 200 }
+];
+
+function runMemoryCheck() {
+    const container = document.getElementById('boot-messages');
+    if (!container) return;
+    container.innerHTML = '';
+
+    BOOT_MESSAGES.forEach((msg, i) => {
+        const el = document.createElement('div');
+        el.className = `boot-msg ${msg.cls || ''}`;
+        el.textContent = msg.text;
+        el.style.animationDelay = `${i * (msg.delay || 220)}ms`;
+        container.appendChild(el);
+    });
+
+    /* Tras todos los mensajes, el panel quedará con "READY"
+       y luego será reemplazado por el featured real cuando llegue la data */
+}
+
+
+/* ============== ESTRELLAS (twinkle) ============== */
+function generateStars(count) {
+    const layer = document.getElementById('stars-layer');
+    if (!layer) return;
+
+    const fragment = document.createDocumentFragment();
+    for (let i = 0; i < count; i++) {
+        const star = document.createElement('div');
+        const isBig = Math.random() < 0.15;
+        star.className = isBig ? 'star star--big' : 'star';
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.setProperty('--dur', `${(2 + Math.random() * 4).toFixed(2)}s`);
+        star.style.setProperty('--delay', `${(Math.random() * 4).toFixed(2)}s`);
+        star.style.setProperty('--peak', (0.5 + Math.random() * 0.5).toFixed(2));
+        fragment.appendChild(star);
+    }
+    layer.appendChild(fragment);
+}
+
+
+/* ============== AUDIO (Web Audio API) ============== */
+function getAudioCtx() {
+    if (audioCtx) return audioCtx;
+    try {
+        const Ctx = window.AudioContext || window.webkitAudioContext;
+        if (!Ctx) return null;
+        audioCtx = new Ctx();
+        return audioCtx;
+    } catch {
+        return null;
+    }
+}
+
+function playTone(freq, duration = 60, type = 'square', volume = 0.04) {
+    if (!soundEnabled) return;
+    const ctx = getAudioCtx();
+    if (!ctx) return;
+    if (ctx.state === 'suspended') ctx.resume();
+
+    try {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(volume, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration / 1000);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration / 1000 + 0.01);
+    } catch (e) {
+        /* Silenciar errores de audio */
+    }
+}
+
+/* Beep de boot (acorde de power-on) */
+function playBootSound() {
+    if (!soundEnabled) return;
+    playTone(440, 80, 'square', 0.03);
+    setTimeout(() => playTone(660, 80, 'square', 0.03), 90);
+    setTimeout(() => playTone(880, 120, 'square', 0.03), 180);
+}
+
+/* Click genérico (botón, filtro) */
+function playClick() {
+    if (!soundEnabled) return;
+    playTone(880, 35, 'square', 0.025);
+}
+
+/* Sonido al cambiar de cartucho (insert) */
+function playInsert() {
+    if (!soundEnabled) return;
+    playTone(220, 50, 'square', 0.03);
+    setTimeout(() => playTone(440, 40, 'square', 0.03), 40);
+}
+
+/* Sonido al cambiar filtro (más agudo) */
+function playFilter() {
+    if (!soundEnabled) return;
+    playTone(1320, 50, 'square', 0.025);
+    setTimeout(() => playTone(1760, 60, 'square', 0.025), 50);
+}
+
+/* Hover en cartucho (muy sutil) */
+function playHover() {
+    if (!soundEnabled) return;
+    playTone(2200, 12, 'sine', 0.01);
+}
+
+
+/* ============== SOUND TOGGLE ============== */
+function loadSoundPreference() {
+    try {
+        const stored = localStorage.getItem(STORAGE_KEY_SOUND);
+        soundEnabled = stored === '1';
+    } catch {
+        soundEnabled = false;
+    }
+}
+
+function saveSoundPreference() {
+    try {
+        localStorage.setItem(STORAGE_KEY_SOUND, soundEnabled ? '1' : '0');
+    } catch {
+        /* Sin storage disponible */
+    }
+}
+
+function setupSoundToggle() {
+    const btn = document.getElementById('sound-toggle');
+    if (!btn) return;
+
+    updateSoundToggleUI();
+
+    btn.addEventListener('click', () => {
+        soundEnabled = !soundEnabled;
+        saveSoundPreference();
+        updateSoundToggleUI();
+        if (soundEnabled) {
+            /* Test beep al activar */
+            playTone(660, 80, 'square', 0.03);
+        }
+    });
+}
+
+function updateSoundToggleUI() {
+    const btn = document.getElementById('sound-toggle');
+    if (!btn) return;
+    btn.classList.toggle('is-muted', !soundEnabled);
+    btn.setAttribute('aria-pressed', soundEnabled ? 'true' : 'false');
+    btn.setAttribute('data-tip', soundEnabled ? 'SONIDO ON' : 'SONIDO OFF');
+}
+
+
 /* ============== INICIALIZACIÓN ============== */
 document.addEventListener('DOMContentLoaded', async () => {
+    /* 1) Restaurar preferencia de sonido */
+    loadSoundPreference();
+
+    /* 2) Generar estrellas de fondo */
+    generateStars(60);
+
+    /* 3) Setup sound toggle */
+    setupSoundToggle();
+
+    /* 4) Boot sequence (overlay + memory check en paralelo) */
+    runBootSequence();
+
+    /* 5) Inicialización normal (no espera al boot) */
     const initialQuery = leerQueryDeURL();
     const searchInput = document.getElementById('search-input');
     if (searchInput && initialQuery) {

@@ -1418,74 +1418,89 @@ main {
 }
 
 .post-hero {
+    position: relative;
+    overflow: hidden;
     border-left: 6px solid var(--card-color, var(--magenta));
-    padding: 0 0 24px 20px;
+    padding: 32px 28px 28px;
     margin-bottom: 32px;
     border-bottom: 2px dashed var(--morado);
+    background:
+        radial-gradient(
+            ellipse at top right,
+            color-mix(in srgb, var(--card-color, var(--magenta)) 12%, transparent) 0%,
+            transparent 55%
+        ),
+        var(--negro-suave);
+    min-height: 240px;
 }
 
-
-/* ============== POST HERO // FLEX (cartridge + text) ============== */
-.post-hero-flex {
-    display: flex;
-    gap: 24px;
-    align-items: stretch;
-    flex-wrap: wrap;
-}
-
-.post-cartridge {
-    flex: 0 0 200px;
-    width: 200px;
-    height: 280px;
-    /* reuses .cartridge styles from home */
-}
-
-.post-cartridge .cartridge__title {
-    font-size: 8px;
-    -webkit-line-clamp: 6;
-}
-
-.post-cartridge .cartridge__body {
-    padding: 12px;
-}
-
-.post-cartridge .cartridge__preview {
-    display: none;
-}
-
-.post-hero-text {
-    flex: 1;
-    min-width: 280px;
+/* Stack limpio: eyebrow > badge > titulo > meta > linea */
+.post-hero-info {
+    position: relative;
+    z-index: 2;
+    max-width: 760px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 14px;
+}
+
+/* "NOW READING" estilo arcade */
+.post-hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
     gap: 8px;
+    font-family: var(--font-titulos);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--cyan);
+    text-transform: uppercase;
 }
 
-.post-hero-text .badge {
+.post-hero-eyebrow-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--verde);
+    box-shadow: 0 0 8px var(--verde);
+    animation: pulse 1.4s ease-in-out infinite;
+    border-radius: 50%;
+}
+
+/* Línea gradient animada bajo el título (aurora sutil) */
+.post-hero-line {
+    margin-top: 6px;
+    height: 3px;
+    width: 100%;
+    max-width: 320px;
+    background: linear-gradient(
+        90deg,
+        var(--card-color, var(--magenta)) 0%,
+        var(--cyan) 50%,
+        var(--magenta) 100%
+    );
+    background-size: 200% 100%;
+    animation: hero-line-shift 6s ease infinite;
+    box-shadow: 0 0 8px color-mix(in srgb, var(--card-color, var(--magenta)) 50%, transparent);
+}
+
+@keyframes hero-line-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+}
+
+/* El badge ya viene con su estilo propio; solo lo alineamos */
+.post-hero-info .badge {
     align-self: flex-start;
-    margin-bottom: 4px;
-}
-
-.post-hero-text .post-titulo {
-    margin-bottom: 8px;
 }
 
 @media (max-width: 600px) {
-    .post-hero-flex {
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
+    .post-hero {
+        padding: 24px 18px 22px;
+        min-height: 0;
     }
 
-    .post-cartridge {
-        flex: 0 0 auto;
-        height: 240px;
-    }
-
-    .post-hero-text {
-        min-width: 0;
-        width: 100%;
+    .post-hero-info {
+        gap: 10px;
     }
 }
 
@@ -1826,4 +1841,324 @@ main {
     .cartridge-rail {
         padding: 20px calc(50% - 110px);
     }
+}
+
+
+/* ============================================
+   v2.1 // ENHANCEMENTS (boot, glitch, stars,
+   aurora, audio, tilt, counter, tooltips)
+   ============================================ */
+
+
+/* ============== FONDO: GRID RETRO ============== */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background-image:
+        linear-gradient(rgba(255, 20, 147, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 48px 48px;
+    background-position: -1px -1px;
+    pointer-events: none;
+}
+
+/* Vignette global sutil sobre todo el body */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(
+        ellipse at center,
+        transparent 35%,
+        rgba(0, 0, 0, 0.55) 100%
+    );
+    pointer-events: none;
+}
+
+
+/* ============== ESTRELLAS TWINKLE ============== */
+.stars-layer {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+    opacity: 0;
+    animation: twinkle var(--dur, 3s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+}
+
+.star--big {
+    width: 3px;
+    height: 3px;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.1; transform: scale(0.8); }
+    50%      { opacity: var(--peak, 0.9); transform: scale(1.2); }
+}
+
+
+/* ============== BOOT SEQUENCE (CRT power-on) ============== */
+.boot-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background-color: #000;
+    pointer-events: none;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.boot-line {
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.85) 50%, #fff 100%);
+    box-shadow:
+        0 0 12px rgba(255, 255, 255, 0.9),
+        0 0 24px rgba(0, 255, 255, 0.5),
+        0 0 48px rgba(255, 20, 147, 0.4);
+    transform: scaleY(0.001);
+    transform-origin: center;
+    animation:
+        boot-grow 420ms cubic-bezier(0.65, 0, 0.35, 1) forwards,
+        boot-flash 90ms ease-out 0ms 1;
+}
+
+@keyframes boot-grow {
+    0%   { transform: scaleY(0.001); }
+    100% { transform: scaleY(80); }
+}
+
+@keyframes boot-flash {
+    0%   { background: #fff; opacity: 1; }
+    100% { background: linear-gradient(180deg, #fff, rgba(255,255,255,0.85), #fff); opacity: 1; }
+}
+
+.boot-overlay.is-done {
+    animation: boot-fade 280ms ease 320ms forwards;
+}
+
+@keyframes boot-fade {
+    to { opacity: 0; visibility: hidden; }
+}
+
+
+/* ============== GLITCH RGB ============== */
+@keyframes glitch-rgb {
+    0%   { text-shadow: -2px 0 var(--cyan), 2px 0 var(--magenta); transform: translateX(0); }
+    20%  { text-shadow: -3px 0 var(--cyan), 3px 0 var(--magenta); transform: translateX(-1px); }
+    40%  { text-shadow:  2px 0 var(--cyan),-2px 0 var(--magenta); transform: translateX(1px); }
+    60%  { text-shadow: -1px 0 var(--cyan), 1px 0 var(--magenta); transform: translateX(0); }
+    80%  { text-shadow:  3px 0 var(--cyan),-3px 0 var(--magenta); transform: translateX(-1px); }
+    100% { text-shadow: 0 0 transparent; transform: translateX(0); }
+}
+
+.featured-titulo.is-glitch {
+    animation: glitch-rgb 280ms steps(6) 1;
+}
+
+/* Scan tearing glitch en el panel */
+@keyframes panel-tear {
+    0%, 100% { clip-path: inset(0 0 0 0); }
+    30%      { clip-path: inset(20% 0 60% 0); transform: translateX(-2px); }
+    60%      { clip-path: inset(50% 0 30% 0); transform: translateX(2px); }
+}
+
+.featured-panel.is-tearing > * {
+    animation: panel-tear 200ms steps(3) 1;
+}
+
+
+/* ============== AURORA GRADIENT (featured panel glow) ============== */
+@keyframes aurora {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+}
+
+.featured-panel::after {
+    background: linear-gradient(
+        45deg,
+        var(--card-color, var(--magenta)) 0%,
+        var(--cyan) 33%,
+        var(--magenta) 66%,
+        var(--card-color, var(--magenta)) 100%
+    );
+    background-size: 300% 300%;
+    animation: aurora 8s ease infinite;
+    opacity: 0.22;
+}
+
+
+/* ============== SCAN LINE animado (refresh CRT) ============== */
+.console-screen > .scan-line {
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--cyan) 50%,
+        transparent 100%
+    );
+    box-shadow: 0 0 8px var(--cyan);
+    border-radius: 2px;
+    z-index: 6;
+    pointer-events: none;
+    opacity: 0.6;
+    animation: scan-sweep 4s linear infinite;
+}
+
+@keyframes scan-sweep {
+    0%   { top: 8%; opacity: 0; }
+    10%  { opacity: 0.6; }
+    90%  { opacity: 0.6; }
+    100% { top: 92%; opacity: 0; }
+}
+
+
+/* ============== HOVER 3D TILT ============== */
+.cartridge {
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.cartridge.is-tilting {
+    transition: transform 80ms linear, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+
+/* ============== SOUND TOGGLE ============== */
+.sound-toggle {
+    font-family: var(--font-titulos);
+    font-size: 9px;
+    color: var(--cyan);
+    background-color: rgba(0, 0, 0, 0.85);
+    border: 1px solid var(--cyan);
+    padding: 6px 10px;
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    transition: background-color 150ms, color 150ms, border-color 150ms;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.sound-toggle:hover {
+    background-color: var(--cyan);
+    color: var(--negro);
+}
+
+.sound-toggle .sound-icon {
+    font-size: 11px;
+    line-height: 1;
+}
+
+.sound-toggle.is-muted {
+    color: var(--gris-claro);
+    border-color: var(--gris-medio);
+}
+
+.sound-toggle.is-muted .sound-icon::before {
+    content: "♪";
+}
+
+.sound-toggle:not(.is-muted) .sound-icon::before {
+    content: "♫";
+}
+
+
+/* ============== TOOLTIPS 8-BIT ============== */
+[data-tip] {
+    position: relative;
+}
+
+[data-tip]:hover::after,
+[data-tip]:focus-visible::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--negro);
+    color: var(--verde);
+    border: 1px solid var(--verde);
+    padding: 4px 8px;
+    font-family: var(--font-titulos);
+    font-size: 7px;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    z-index: 100;
+    pointer-events: none;
+    box-shadow: 2px 2px 0 var(--magenta);
+    animation: tooltip-blink 2s steps(2) infinite;
+}
+
+[data-tip][data-tip-pos="bottom"]:hover::after {
+    bottom: auto;
+    top: calc(100% + 6px);
+}
+
+@keyframes tooltip-blink {
+    0%, 70% { opacity: 1; }
+    70.01%, 100% { opacity: 0.7; }
+}
+
+
+/* ============== COUNTER ANIMADO ============== */
+.stat-count.is-counting {
+    color: var(--verde);
+    text-shadow: 0 0 6px var(--verde);
+}
+
+
+/* ============== MEMORY CHECK LOADING ============== */
+.boot-messages {
+    font-family: var(--font-titulos);
+    font-size: 10px;
+    color: var(--verde);
+    text-align: left;
+    padding: 28px 24px;
+    letter-spacing: 0.1em;
+    line-height: 2;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+}
+
+.boot-msg {
+    opacity: 0;
+    transform: translateX(-4px);
+    animation: boot-msg-in 180ms ease forwards;
+}
+
+.boot-msg--ok { color: var(--verde); }
+.boot-msg--warn { color: var(--naranja); }
+.boot-msg--ready { color: var(--magenta); }
+
+@keyframes boot-msg-in {
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.boot-msg::before {
+    content: "> ";
+    color: var(--cyan);
 }
