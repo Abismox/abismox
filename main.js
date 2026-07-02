@@ -137,7 +137,7 @@ function renderFeatured(noticia, animate = true) {
             ${noticia.preview ? `<p class="featured-preview">${escapeHtml(noticia.preview)}</p>` : ''}
             ${contenido ? `<p class="featured-contenido">${escapeHtml(contenido)}</p>` : ''}
             <div class="featured-actions">
-                ${internalUrl ? `<a class="card-cta" href="${internalUrl}" aria-label="Leer archivo completo: ${escapeAttr(noticia.titulo)}">LEER ARCHIVO</a>` : ''}
+                ${internalUrl ? `<a class="card-cta" href="${escapeAttr(internalUrl)}" aria-label="Leer archivo completo: ${escapeAttr(noticia.titulo)}">LEER ARCHIVO</a>` : ''}
                 ${hasExternal ? `<a class="card-cta secondary" href="${escapeAttr(noticia.link_externo)}" target="_blank" rel="noopener noreferrer" aria-label="Abrir fuente original">FUENTE ORIGINAL</a>` : ''}
                 <button class="share-btn" id="featured-share-btn" type="button" aria-label="Compartir: ${escapeAttr(noticia.titulo)}">▓ COMPARTIR</button>
             </div>

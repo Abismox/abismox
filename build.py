@@ -29,6 +29,7 @@ import unicodedata
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from typing import Any, Dict, List, Optional
+from urllib.parse import urlparse
 from xml.sax.saxutils import escape as xml_escape
 
 try:
@@ -62,6 +63,35 @@ RELATED_MAX_ITEMS = 3
 WORDS_PER_MINUTE = 200
 MAX_POSTS = 30
 MAX_DAYS = 30
+
+# Slug whitelist: lowercase alnum + dashes, 1-128 chars. Bloquea path traversal
+# ("../"), separadores y meta-caracteres HTML que rompen atributos.
+_SLUG_RE = re.compile(r"^[a-z0-9][a-z0-9-]{0,127}$")
+
+# Esquemas de URL permitidos para link_externo. javascript:, data:, vbscript:
+# permitirían XSS via href.
+_URL_SCHEMES_OK = frozenset({"http", "https"})
+
+
+def _sanitizar_slug(valor: str) -> Optional[str]:
+    """Re-slugifica un valor. Devuelve None si no se puede generar uno válido."""
+    s = slugify(valor or "")
+    if s and _SLUG_RE.match(s):
+        return s
+    return None
+
+
+def _validar_link_externo(valor: Any) -> Optional[str]:
+    """Devuelve la URL sólo si su esquema es http(s) y tiene host."""
+    if not valor or not isinstance(valor, str):
+        return None
+    try:
+        u = urlparse(valor)
+    except Exception:
+        return None
+    if u.scheme.lower() not in _URL_SCHEMES_OK or not u.netloc:
+        return None
+    return valor
 
 FUENTES_RSS = [
     ("https://vandal.elespanol.com/rss", "videojuegos"),
@@ -128,6 +158,16 @@ def validar_noticia(n: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     if not n.get("slug"):
         log.warning("Noticia sin slug, id=%s: saltando", n.get("id"))
         return None
+
+    # Sanitizar slug: el AI puede devolver rutas ("../../etc") o
+    # meta-chars que rompen atributos HTML al usarse en href.
+    slug_limpio = _sanitizar_slug(n["slug"]) or _sanitizar_slug(n.get("titulo", ""))
+    if not slug_limpio:
+        slug_limpio = "post"
+    if slug_limpio != n["slug"]:
+        log.warning("Slug inseguro %r, normalizado a %r", n.get("slug"), slug_limpio)
+    n["slug"] = slug_limpio
+
     if not n.get("titulo") or not n.get("fecha"):
         log.warning("Noticia incompleta, slug=%s: saltando", n.get("slug"))
         return None
@@ -135,6 +175,14 @@ def validar_noticia(n: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         n["color"] = "#FF1493"
     if not n.get("categoria"):
         n["categoria"] = "general"
+
+    # Validar link_externo: bloquear javascript:, data:, vbscript:, etc.
+    link_original = n.get("link_externo")
+    link_seguro = _validar_link_externo(link_original)
+    if link_original and not link_seguro:
+        log.warning("link_externo bloqueado (esquema no permitido): %r", link_original)
+    n["link_externo"] = link_seguro
+
     return n
 
 
@@ -482,15 +530,23 @@ def render_relacionados(noticia: Dict[str, Any], todas: List[Dict[str, Any]]) ->
 
 
 def construir_jsonld(n: Dict[str, Any], canonical: str, og_image: str) -> str:
+    def _safe(v: Any) -> str:
+        # Neutraliza "</script>" embebido en strings JSON-LD: json.dumps no
+        # escapa "<" ni "/", así que un "</script>" en titulo/contenido
+        # cerraría el bloque <script type="application/ld+json"> y permitiría
+        # inyectar HTML/JS. La secuencia <\/ sigue siendo JSON válido
+        # (los parsers revierten \/ a /).
+        return "" if v is None else str(v).replace("</", "<\\/")
+
     data = {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
-        "headline": n["titulo"],
-        "description": n.get("preview", ""),
-        "articleBody": n.get("contenido", ""),
-        "datePublished": n.get("fecha", ""),
-        "dateModified": n.get("fecha", ""),
-        "author": {"@type": "Organization", "name": "ABISMOX Agent", "url": SITE_BASE_URL},
+        "headline": _safe(n["titulo"]),
+        "description": _safe(n.get("preview", "")),
+        "articleBody": _safe(n.get("contenido", "")),
+        "datePublished": _safe(n.get("fecha", "")),
+        "dateModified": _safe(n.get("fecha", "")),
+        "author": {"@type": "Organization", "name": _safe("ABISMOX Agent"), "url": SITE_BASE_URL},
         "publisher": {
             "@type": "Organization",
             "name": "ABISMOX",
@@ -498,7 +554,7 @@ def construir_jsonld(n: Dict[str, Any], canonical: str, og_image: str) -> str:
         },
         "mainEntityOfPage": {"@type": "WebPage", "@id": canonical},
         "image": og_image,
-        "articleSection": categoria_titulo(n.get("categoria", "")),
+        "articleSection": _safe(categoria_titulo(n.get("categoria", ""))),
         "inLanguage": "es",
     }
     return json.dumps(data, ensure_ascii=False, indent=2)
@@ -507,12 +563,20 @@ def construir_jsonld(n: Dict[str, Any], canonical: str, og_image: str) -> str:
 def render_posts(noticias: List[Dict[str, Any]]) -> int:
     plantilla = TEMPLATE_PATH.read_text(encoding="utf-8")
     POSTS_DIR.mkdir(exist_ok=True)
+    posts_root = POSTS_DIR.resolve()
     slugs_vistos = {n["slug"] for n in noticias}
     escritos = 0
     for n in noticias:
         try:
             html_out = render_post_html(n, plantilla, noticias)
-            (POSTS_DIR / f"{n['slug']}.html").write_text(html_out, encoding="utf-8")
+            target = (POSTS_DIR / f"{n['slug']}.html").resolve()
+            # Defensa en profundidad: si el slug escapara de posts/ (p.ej.
+            # por datos antiguos no validados), abortamos en vez de escribir
+            # fuera del directorio.
+            if posts_root != target and posts_root not in target.parents:
+                log.error("Slug fuera de posts/: %r -> %s", n["slug"], target)
+                continue
+            target.write_text(html_out, encoding="utf-8")
             escritos += 1
         except Exception as e:
             log.error("Error renderizando post %s: %s", n.get("slug"), e)
