@@ -1,6 +1,6 @@
 # CONTEXT // ABISMOX
 
-Estado completo del proyecto al cierre de la sesión **2026-06-29** (sesión de rediseño v2.0 // Cartridge Carousel).
+Estado completo del proyecto al cierre de la sesión **2026-07-02** (sesión de fix de slug + git workflow + test end-to-end de arquitectura nueva).
 Referencia rápida para retomar trabajo en cualquier momento.
 
 ---
@@ -73,6 +73,13 @@ Referencia rápida para retomar trabajo en cualquier momento.
 - `cdc2d23` — feat: v2.0 polish - transiciones featured + swipe hint + kbd helper
 - `ac9ecdf` — feat: v2.0 posts individuales con cartridge visual
 - `0505050` — feat: v2.1.0 polish + fix post-hero sin cartucho (8 mejoras + sanitizer)
+- `fb1ffa3` — fix: cerrar javascript: XSS, JSON-LD breakout y path traversal via slug
+- `a9556f8` — fix(deploy): abortar rebase en curso al inicio para ser idempotente
+- `c8baa0d` — feat(architecture): separar fetch (VPS) y render (GitHub Action)
+- `457f379` — auto: fetch noticias 03:35 (VPS — primer test arquitectura nueva)
+- `fdf9a61` — auto: render posts 09:35:29Z (Action — primer render bajo arquitectura)
+- `ba91d61` — docs: CONTEXT actualizado (cierre sesión security)
+- `9d0bf5c` — fix(build): blacklist slug placeholders + title-derivation + URL default
 
 ### Features implementadas (v2.1.0) — sesión 2026-07-01
 **8 mejoras visuales en home:**
@@ -236,9 +243,14 @@ MINIMAX_BASE_URL=https://api.minimax.io/v1   # ← FIX CRÍTICO
 ## 🐛 Issues conocidos / aprendizaje
 
 ### Bug: `posts/kebab-case.html`
-- **Síntoma**: en cada deploy aparece un post con slug literal `kebab-case`
-- **Causa**: el prompt en `build.py` línea ~222 contiene `"slug": "kebab-case"` como ejemplo; minimax a veces "ecohéa" el ejemplo en vez de generar uno real
-- **Fix futuro**: cambiar el ejemplo del prompt a un slug real (ej: `"slug": "ejemplo-noticia-2024"`) o post-procesar para descartar slugs placeholder
+- **Síntoma**: en cada deploy aparecía un post con slug literal `kebab-case`
+- **Causa**: el prompt en `build.py` línea ~297 contenía `"slug": "kebab-case"` como ejemplo; minimax "echeaba" el ejemplo en vez de generar uno real, y a veces omitía el slug por completo (entrada Assassin's Creed → dropeada silenciosamente por `validar_noticia`)
+- **Fix aplicado (commit `9d0bf5c`)**:
+  - Prompt ejemplo cambiado a `"slug": "titulo-de-la-noticia"` (consistente con título `"TITULO DE LA NOTICIA"`)
+  - Nueva constante `_SLUG_PLACEHOLDERS` (frozenset de 10 placeholders: `kebab-case`, `titulo-de-la-noticia`, `titulo-en-mayusculas`, `ejemplo`, `ejemplo-noticia`, `ejemplo-noticia-2024`, `placeholder`, `muestra`, `slug-ejemplo`, `post-ejemplo`)
+  - `validar_noticia` re-escrito: si slug falta o es placeholder, deriva del título con `_sanitizar_slug(titulo)` (no dropea la noticia)
+- **Cleanup automático**: el loop de huérfanos en `render_posts` elimina `kebab-case.html` en el próximo `--only-render` (cuando el slug del JSON se normalice)
+- **Estado**: fix pusheado a origin (`9d0bf5c` tras rebase — el original local era `ca9bbc3`); pendiente verificar desaparición de `kebab-case.html` después del próximo render
 
 ### Cache CDN de GitHub Pages
 - **Síntoma**: sitio sirve versión vieja tras deploy
@@ -248,8 +260,8 @@ MINIMAX_BASE_URL=https://api.minimax.io/v1   # ← FIX CRÍTICO
 - **Síntoma**: 401 "invalid api key (2049)" en TODAS las llamadas a la API
 - **Causa**: default hardcodeado `https://api.minimax.chat/v1` no existe o no es el endpoint real
 - **Endpoint real**: `https://api.minimax.io/v1`
-- **Fix aplicado**: vía variable de entorno `MINIMAX_BASE_URL` en `.env` (no requiere editar código)
-- **Pendiente**: editar `build.py` para cambiar el default (Option B) y consolidar el fix
+- **Fix aplicado vía `.env`** (Opción A, 2026-06-24): `MINIMAX_BASE_URL=https://api.minimax.io/v1`
+- **Fix aplicado en código** (Opción B, commit `9d0bf5c` 2026-07-02): default en `build.py` ahora es `api.minimax.io`. `.env.example` actualizado. Ya no depende del `.env` para funcionar.
 
 ### Histórico de debugging (2026-06-24)
 1. Primer deploy (22:20): build OK pero RSS muertos → 0 items, sitio sin cambios
@@ -261,6 +273,54 @@ MINIMAX_BASE_URL=https://api.minimax.io/v1   # ← FIX CRÍTICO
 - Git avisa: "LF will be replaced by CRLF"
 - **Solución:** inofensivo, ignorar warning o añadir `.gitattributes` con `* text=auto eol=lf`
 
+### GitHub Pages deploy puede fallar transitoriamente con "Deployment failed, try again later."
+- **Síntoma**: workflow `pages-build-deployment` muestra "Failure" aunque `actions/deploy-pages@v5` reporta artifact built OK (303KB). Log de deploy step: stuck en `deployment_queued` (~20 polls), pasa a `syncing_files`, después `Error: Deployment failed, try again later.`
+- **Causa**: problema de **infraestructura de Pages** (cola o servicio de sync), NO del código ni del artifact
+- **Workaround**: re-correr el workflow desde la UI (`Actions` → click en el run → `Re-run failed jobs`). En nuestro caso el retry tomó 17s (vs 2m 52s del fallido).
+- **Observado**: 2026-07-02 en `pages-build-deployment #32` (render commit `aeafa70`)
+- **Decisión**: no requiere cambio de código; si vuelve a pasar en próximos deploys, simplemente re-run
+
+---
+
+## 🛠️ Workflow de git (local Windows)
+
+**Problema recurrente:** el VPS cron 00:00 + GitHub Action pushean 2 commits al main durante el día. Cuando local trabaja y luego hace `git push`, sale error `fetch first` porque origin/main está adelante.
+
+**Solución aplicada (2026-07-02, local Windows):**
+
+```powershell
+# Alias global que hace pull --rebase + push en un solo comando
+git config --global alias.gpush '!f(){ b=$(git rev-parse --abbrev-ref HEAD); git pull --rebase origin "$b" && git push; }; f'
+
+# Por si alguna vez se usa `git pull` a secas, que también rebase
+git config --global pull.rebase true
+```
+
+**Uso nuevo:**
+| Antes ❌ | Ahora ✅ |
+|---|---|
+| `git push` → "fetch first" | `git gpush` → siempre funciona |
+| `git pull` (rare merge commits) | `git pull` → rebase silencioso |
+
+**Verificar config:**
+```powershell
+git config --global --get-regexp "alias.gpush|pull.rebase"
+```
+Esperado: imprime ambas líneas (`alias.gpush !f(){...}` y `pull.rebase true`).
+
+**Scope:** los configs son globales (afectan todos los repos del usuario en esta PC). Configurado solo en local Windows — VPS usa su propio `git config --local` (`pull.rebase=false` allí, porque `deploy.sh` ya hace el `--ff-only` antes del push).
+
+**Recuperación si algo se complica (raro):**
+```powershell
+git rebase --abort 2>$null      # si quedó rebase a medias
+git pull --rebase origin main   # forzar rebase limpio
+# Si conflicto en archivos que TÚ no modificas (data/noticias.json, posts/, feed.xml):
+#   es propiedad del VPS/Action, aceptar versión de origin: git checkout --theirs <file>; git add <file>; git rebase --continue
+git push
+```
+
+**Respaldo manual si `gpush` falla:** usar `git pull --rebase && git push` (el original).
+
 ---
 
 ## 📋 Pendientes (futuras sesiones)
@@ -268,10 +328,14 @@ MINIMAX_BASE_URL=https://api.minimax.io/v1   # ← FIX CRÍTICO
 ### Corto plazo
 - [x] **Verificar que el cron esté configurado** — ✅ `0 0 * * *` confirmado
 - [x] **Verificar primer cron automático** — ✅ Probado a las 11:25 con `25 11 * * *`, funcionó end-to-end
-- [ ] **Aplicar Option B**: editar `build.py` línea ~212, cambiar default `api.minimax.chat` → `api.minimax.io`
-- [ ] **Fix bug `kebab-case.html`**: editar el prompt en `build.py` líneas 222-228 (cambiar ejemplo de slug)
+- [x] **Aplicar Option B**: editar `build.py` línea ~212, cambiar default `api.minimax.chat` → `api.minimax.io` — ✅ commit `9d0bf5c`
+- [x] **Fix bug `kebab-case.html`**: prompt slug + blacklist + title-derivation — ✅ commit `9d0bf5c`
 - [x] **Sincronizar cambios en local Windows con VPS** — ✅ Vía `git pull --rebase` desde local
-- [ ] **Push los 3 commits de v2.0.0 a GitHub** — Hechos localmente, falta `git push` desde PowerShell (o esperar al cron de las 00:00 en VPS)
+- [x] **Push los commits pendientes a GitHub** — ✅ `9d0bf5c` pusheado (incluye rebase que cambió SHA de `ca9bbc3` → `9d0bf5c`)
+- [x] **Setup `gpush` alias + `pull.rebase=true`** — ✅ Config global aplicada (2026-07-02)
+- [ ] **Verificar que `kebab-case.html` desaparece tras próximo `--only-render`** — pendiente, será automático
+- [ ] **Verificar que la entrada Assassin's Creed genera URL con slug derivado del título** (no kebab-case) — pendiente tras próximo render
+- [ ] **Considerar post-procesar títulos** para corregir typos como "ASASSIN'S" (debería ser "ASSASSIN'S") — no crítico
 
 ### Seguridad (recomendable pero no urgente)
 - [ ] `chmod 600 /opt/abismox/.env` (solo root puede leer)
@@ -518,9 +582,48 @@ curl --ssl-no-revoke -sI https://Abismox.github.io/abismox/ | head -3
 
 ---
 
-**Última actualización:** 2026-07-02 03:30 UTC (final de sesión security + arquitectura)
-**Estado del sitio:** ✅ Arquitectura nueva funcionando (probada con 2 deploys automáticos: VPS fetch + GitHub Action render)
-**Estado del cron VPS:** ✅ Activo, ahora hace solo `--only-fetch` (commit JSON)
+## 📝 Notas de la sesión 2026-07-02 (continuación — slug fix + git workflow)
+
+### Logros
+- ✅ **Test end-to-end de la arquitectura nueva** ejecutado manualmente desde VPS (`./deploy.sh` → commit JSON → Action triggerea → render commit → Pages deploy). Probó que las 2 fases (fetch en VPS, render en Action) están aisladas y no se pisan.
+- ✅ Detectado un bug nuevo durante el test: la entrada de **Assassin's Creed Black Flag** en el JSON tenía el slug `"kebab-case"` heredado (minimax ecoheó el ejemplo) Y una segunda entrada (la de "EL FIN DE LOS DISCOS DE PLAYSTATION...") tenía slug ausente — esta última era **dropeada silenciosamente** por `validar_noticia` y nunca llegaba a renderizarse.
+- ✅ **4 fixes en commit `9d0bf5c`** (rebased, SHA original era `ca9bbc3`):
+  1. **Prompt ejemplo** cambiado de `"kebab-case"` → `"titulo-de-la-noticia"` (consistente con el título genérico del ejemplo)
+  2. **`_SLUG_PLACEHOLDERS` blacklist** añadida (10 placeholders conocidos)
+  3. **`validar_noticia` re-escrito**: si slug falta o está en la blacklist, **deriva del título** en vez de dropear la noticia
+  4. **`MINIMAX_BASE_URL` default** cambiado a `api.minimax.io` en `build.py` (Option B pendiente). `.env.example` actualizado.
+- ✅ **Tests unitarios locales** con 7 casos pasando: kebab-case derivación, slug ausente derivación, slug vacío derivación, slug legítimo intacto, nuevo placeholder "titulo-de-la-noticia" rechazado, javascript: URL bloqueado (XSS defense intacto), sin título derivable dropeado.
+- ✅ **Setup de git workflow local** (`gpush` alias + `pull.rebase=true`) — fin del ciclo "fetch first" para siempre
+- ✅ **Discovery**: GitHub Pages puede fallar transitoriamente con "Deployment failed, try again later." durante `syncing_files` — es infra de Pages, no del código. Workaround: re-run desde UI. Observado en `pages-build-deployment #32`.
+
+### Commits de la sesión
+- `ca9bbc3` → `9d0bf5c` (rebased) — fix(build): blacklist slug placeholders + title-derivation + URL default
+
+### Decisiones
+- **Mantener `gpush` global** (no local-only) — funciona en cualquier repo del usuario
+- **No consolidar las Notas del 2026-07-02** en una sola — el usuario prefiere historial granular para sesiones largas
+- **Cleanup de `kebab-case.html`** se hará automáticamente vía el loop de huérfanos en `render_posts` cuando el slug en JSON se normalice en el próximo `--only-fetch` del VPS (cron 00:00 Guanajuato)
+- **Post-procesar títulos** para corregir typos como "ASASSIN'S" → queda como pendiente no crítico (la IA de minimax a veces escribe mal)
+
+### Pendientes para futuras sesiones
+- [ ] Verificar que `kebab-case.html` se eliminó del repo tras próximo render (puede hacerse con `git fetch` y luego `ls posts/` o vía web en el repo)
+- [ ] Verificar que el sitio ahora tiene URLs limpias para todas las entradas (en particular Assassin's Creed → debería ser `el-remake-de-assassins-creed-black-flag-estara-verificado-en-steam-deck.html` o similar derivado del título)
+- [ ] Considerar `core.hooksPath` con `pre-push` hook global como capa extra (opcional)
+- [ ] Considerar notificaciones (Telegram/Discord/email) cuando Pages deploy falla
+- [ ] Limpiar el `01a2d10` misterioso del historial (sigue ahí, sin importancia)
+
+### Drama de la sesión (documentar para no repetir)
+1. **Conflicto "fetch first"** clásico al intentar push de `ca9bbc3` — resuelto con `git pull --rebase origin main` antes del push. El rebase cambió el SHA de `ca9bbc3` → `9d0bf5c`.
+2. **Mi propio bug en el fix**: en `validar_noticia`, la primera versión pasaba `slug_crudo = ""` (cuando era placeholder), pero `_sanitizar_slug("")` devolvía `"post"` (porque `slugify("")` tiene fallback `"post"`). Resultado: kebab-case se convertía en `post`, no en el slug del título. Detectado y arreglado con un test unitario antes de hacer push — el test 1 mostró `out["slug"] = "post"` en vez de derivado del título.
+3. **Pages deploy transient failure**: workflow `pages-build-deployment #32` falló en `syncing_files` después de 25 polls en `deployment_queued`. Re-run desde UI pasó en 17s — no es bug del sitio, es de Pages infra.
+
+---
+
+**Última actualización:** 2026-07-02 14:30 UTC (final de sesión fix slug + git workflow + test arquitectura)
+**Estado del sitio:** ✅ Arquitectura nueva funcionando, kebab-case.html pendiente de limpieza automática
+**Último commit:** `9d0bf5c fix(build): blacklist slug placeholders + title-derivation + correct default API URL`
+**Estado del cron VPS:** ✅ Activo, hace solo `--only-fetch` (commit JSON)
 **Estado del GitHub Action:** ✅ Activo, triggerea cuando JSON cambia, hace `--only-render` (commit HTML)
-**Estado del cap:** ✅ 27 posts activos (<=30 dias, <=30 posts)
-**Próxima sesión:** verificar que el sistema sigue funcionando, considerar notificaciones o ajustes finos
+**Estado del cap:** ✅ 28 posts en `/posts/` (incluye kebab-case.html — pendiente remover)
+**Estado de git workflow (local):** ✅ `gpush` alias + `pull.rebase=true` configurados globalmente
+**Próxima sesión:** verificar limpieza de `kebab-case.html` tras próximo render, considerar notificaciones o ajustes finos
