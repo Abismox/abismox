@@ -1,0 +1,66 @@
+name: Render posts
+
+on:
+  # Trigger cuando el VPS (o local) actualiza data/noticias.json
+  push:
+    paths:
+      - 'data/noticias.json'
+  # Permite correr el render manualmente desde la UI de GitHub
+  workflow_dispatch:
+
+# Evita runs concurrentes para no pisar commits
+concurrency:
+  group: render
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    permissions:
+      contents: write   # necesario para hacer git push del HTML regenerado
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          # Necesitamos el historial para diff, fetch-depth 0
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests python-dotenv
+
+      - name: Render posts + feed + sitemap
+        # Solo render: NO fetchea RSS ni llama a la API (eso lo hace el VPS)
+        run: python build.py --only-render
+
+      - name: Check for changes
+        id: check
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Changed files:"
+            git status --short
+          fi
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit and push rendered artifacts
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          git add posts/ feed.xml sitemap.xml
+          git commit -m "auto: render posts $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push

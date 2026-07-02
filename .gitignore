@@ -27,3 +27,6 @@ desktop.ini
 # Build temporal (posts y feed SÍ se commitean para GitHub Pages)
 node_modules/
 dist/
+
+# Previews locales (no se commitean)
+_preview/
