@@ -6,15 +6,15 @@
     <description>Archivo automático de noticias gaming + tecnología. Pixel art, nostalgia y futuro digital.</description>
     <atom:link href="https://Abismox.github.io/abismox/feed.xml" rel="self" type="application/rss+xml"/>
     <language>es-es</language>
-    <lastBuildDate>Thu, 02 Jul 2026 09:22:34 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 02 Jul 2026 09:35:29 +0000</lastBuildDate>
     <generator>ABISMOX build.py</generator>
     <item>
-      <title>XBOX PROBARA FUNCION PARA CONVERTIR JUEGOS FISICOS EN DIGITALES</title>
-      <link>https://Abismox.github.io/abismox/posts/xbox-disc2digital.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/xbox-disc2digital.html</guid>
+      <title>XBOX PROBARA FUNCION PARA CONVERTIR JUEGOS FISICOS EN LICENCIAS DIGITALES</title>
+      <link>https://Abismox.github.io/abismox/posts/xbox-probando-funcion-convertir-juegos-fisicos-licencias-digitales.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/xbox-probando-funcion-convertir-juegos-fisicos-licencias-digitales.html</guid>
       <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
       <category>VIDEOJUEGOS</category>
-      <description>DISC2DIGITAL PERMITIRA TRANSFORMAR DISCOS DE XBOX EN LICENCIAS DIGITALES ASOCIADAS A LA CUENTA.</description>
+      <description>DISC2DIGITAL PERMITIRA TRANSFORMAR DISCOS DE XBOX EN COPIAS DIGITALES ASOCIADAS A LA CUENTA</description>
     </item>
     <item>
       <title>EL FIN DE LOS DISCOS DE PLAYSTATION CHOCA CON LA TRADICION FISICA EN ESPANA</title>
@@ -22,7 +22,15 @@
       <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/kebab-case.html</guid>
       <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
       <category>VIDEOJUEGOS</category>
-      <description>LAS CIFRAS MUESTRAN QUE EL JUEGO FISICO SIGUE FUERTE EN ESPANA A PESAR DE LA DECISION DE PLAYSTATION.</description>
+      <description>LAS CIFRAS MUESTRAN QUE EL JUEGO FISICO SIGUE SIENDO FUERTE EN ESPANA, A PESAR DE LA DECISION DE PLAYSTATION.</description>
+    </item>
+    <item>
+      <title>FREE FIRE MAX | CODIGOS DE HOY JUEVES 2 DE JULIO DE 2026 - RECOMPENSAS GRATIS</title>
+      <link>https://Abismox.github.io/abismox/posts/free-fire-max-codigos-jueves-2-julio-2026.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/free-fire-max-codigos-jueves-2-julio-2026.html</guid>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>OBTÉN RECOMPENSAS EXCLUSIVAS EN GARENA FREE FIRE MAX CON LOS CÓDIGOS DE HOY.</description>
     </item>
     <item>
       <title>ONIMUSHA: WAY OF THE SWORD LLEGA TRES SEMANAS ANTES DE LO PREVISTO</title>
@@ -30,7 +38,7 @@
       <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/onimusha-way-of-the-sword-adelanta-su-lanzamiento.html</guid>
       <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
       <category>VIDEOJUEGOS</category>
-      <description>CAPCOM ANUNCIA EL LANZAMIENTO ANTICIPADO DE ONIMUSHA: WAY OF THE SWORD PARA EL 4 DE SEPTIEMBRE.</description>
+      <description>CAPCOM ANUNCIA QUE EL LANZAMIENTO DE ONIMUSHA: WAY OF THE SWORD SERÁ EL 4 DE SEPTIEMBRE.</description>
     </item>
     <item>
       <title>SOLUCION WORDLE EN ESPANOL Y TILDES HOY 2 DE JULIO Y PISTAS</title>
@@ -38,7 +46,23 @@
       <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/solucion-wordle-espanol-tildes-2-julio-pistas.html</guid>
       <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
       <category>VIDEOJUEGOS</category>
-      <description>DESCUBRE LA SOLUCION DEL WORDLE EN ESPANOL Y TILDES PARA EL 2 DE JULIO DE 2026 Y OBTEN PISTAS PARA EL RETO DE HOY.</description>
+      <description>DESCUBRE LA SOLUCION DEL WORDLE EN ESPANOL Y TILDES PARA EL 2 DE JULIO DE 2026 Y OBTEN PISTAS PARA RESOLVERLO POR TU CUENTA.</description>
+    </item>
+    <item>
+      <title>METROID RAVENOUS: NUEVO JUEGO 2D DE NINTENDO FILTRADO</title>
+      <link>https://Abismox.github.io/abismox/posts/metroid-ravenous-filtracion.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/metroid-ravenous-filtracion.html</guid>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>METROID RAVENOUS, UN JUEGO NO ANUNCIADO DE NINTENDO, HA SIDO FILTRADO POR EL MINISTERIO DE JUSTICIA DE BRASIL.</description>
+    </item>
+    <item>
+      <title>XBOX PROBARA FUNCION PARA CONVERTIR JUEGOS FISICOS EN DIGITALES</title>
+      <link>https://Abismox.github.io/abismox/posts/xbox-disc2digital.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/xbox-disc2digital.html</guid>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>DISC2DIGITAL PERMITIRA TRANSFORMAR DISCOS DE XBOX EN LICENCIAS DIGITALES ASOCIADAS A LA CUENTA.</description>
     </item>
     <item>
       <title>METROID RAVENOUS FILTRADO: NUEVO JUEGO 2D DE NINTENDO EN 2026</title>
@@ -143,30 +167,6 @@
       <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
       <category>VIDEOJUEGOS</category>
       <description>LA PAGINA OFICIAL DE GTA 6 CONFIRMA MEJORAS TECNICAS EN PLAYSTATION 5 PRO.</description>
-    </item>
-    <item>
-      <title>RESERVA DE GTA 6: PRECIO, EDICIONES Y NOVEDADES CONFIRMADAS POR ROCKSTAR</title>
-      <link>https://Abismox.github.io/abismox/posts/gta-6-reserva-rockstar.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/gta-6-reserva-rockstar.html</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
-      <category>VIDEOJUEGOS</category>
-      <description>GRAND THEFT AUTO VI YA ESTA DISPONIBLE PARA RESERVAR EN ESPAÑA CON DETALLES SOBRE PRECIO Y NOVEDADES.</description>
-    </item>
-    <item>
-      <title>DIGITAL FOUNDRY ANALIZA CAPTURAS DE GTA 6 Y DUDAN DE RAY TRACING EN CONSOLA</title>
-      <link>https://Abismox.github.io/abismox/posts/digital-foundry-analiza-capturas-gta-6.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/digital-foundry-analiza-capturas-gta-6.html</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
-      <category>VIDEOJUEGOS</category>
-      <description>Digital Foundry destaca el uso de reflejos con ray tracing en GTA 6, pero duda que sean en tiempo real en PS5 o Xbox Series X.</description>
-    </item>
-    <item>
-      <title>ANALISTAS DE LA INDUSTRIA HABLAN SOBRE LA EDICION FISICA DE GTA 6</title>
-      <link>https://Abismox.github.io/abismox/posts/analistas-opinan-sobre-gta-6.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/analistas-opinan-sobre-gta-6.html</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
-      <category>VIDEOJUEGOS</category>
-      <description>LOS ANALISTAS DICEN QUE LA AUSENCIA DE UNA VERSION EN DISCO NO AFECTARA LAS VENTAS DE GTA 6</description>
     </item>
   </channel>
 </rss>
