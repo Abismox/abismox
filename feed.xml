@@ -6,8 +6,56 @@
     <description>Archivo automático de noticias gaming + tecnología. Pixel art, nostalgia y futuro digital.</description>
     <atom:link href="https://Abismox.github.io/abismox/feed.xml" rel="self" type="application/rss+xml"/>
     <language>es-es</language>
-    <lastBuildDate>Thu, 02 Jul 2026 09:35:29 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 02 Jul 2026 18:21:15 +0000</lastBuildDate>
     <generator>ABISMOX build.py</generator>
+    <item>
+      <title>GAME LANZA SUS WILD PC DAYS CON DESCUENTOS EN PORTATILES, MONITORES, PERIFERICOS Y CONSOLAS PC</title>
+      <link>https://Abismox.github.io/abismox/posts/wild-pc-days.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/wild-pc-days.html</guid>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>GAME ANUNCIA SUS WILD PC DAYS, UNA CAMPAÑA CON OFERTAS EN SETUPS DE JUEGO HASTA EL 12 DE JULIO.</description>
+    </item>
+    <item>
+      <title>ASASSIN'S CREED BLACK FLAG REMASTER VERIFICADO EN STEAM DECK</title>
+      <link>https://Abismox.github.io/abismox/posts/kebab-case.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/kebab-case.html</guid>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>EL NUEVO REMASTER DE BLACK FLAG FUNCIONA PERFECTAMENTE EN STEAM DECK DESDE SU LANZAMIENTO</description>
+    </item>
+    <item>
+      <title>BUNGIE RETRASA PARCHE DE DESTINY 2 TRAS DESPIDOS</title>
+      <link>https://Abismox.github.io/abismox/posts/bungie-retrasa-parche-destiny-2.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/bungie-retrasa-parche-destiny-2.html</guid>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>EL EQUIPO DE DESTINY 2 SOLICITA PACIENCIA A LOS JUGADORES MIENTRAS SE RETRASA UN PARCHE PROGRAMADO.</description>
+    </item>
+    <item>
+      <title>TIENDAS Y EDITORAS EN PIE DE GUERRA CONTRA SONY</title>
+      <link>https://Abismox.github.io/abismox/posts/tiendas-editoras-pie-guerra-contra-sony.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/tiendas-editoras-pie-guerra-contra-sony.html</guid>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>LA INDUSTRIA DEL VIDEOJUEGO SE REBELA CONTRA LA DECISION DE SONY DE DEJAR DE PRODUCIR DISCOS FISICOS EN 2028.</description>
+    </item>
+    <item>
+      <title>METROID RAVENOUS FILTRADO: NUEVO JUEGO 2D DE NINTENDO EN 2026</title>
+      <link>https://Abismox.github.io/abismox/posts/metroid-ravenous-filtrado.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/metroid-ravenous-filtrado.html</guid>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>METROID RAVENOUS, UN JUEGO NO ANUNCIADO DE NINTENDO, FUE FILTRADO POR EL MINISTERIO DE JUSTICIA DE BRASIL.</description>
+    </item>
+    <item>
+      <title>SEGA ESPERA VENDER MAS DE 5 MILLONES DE UNIDADES DE PERSONA 4 REVIVAL Y STRANGER THAN HEAVEN</title>
+      <link>https://Abismox.github.io/abismox/posts/sega-persona-4-revival-stranger-than-heaven.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/sega-persona-4-revival-stranger-than-heaven.html</guid>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>SEGA CONFIRMA SUS EXPECTATIVAS DE VENTAS PARA SUS JUEGOS ESTRELLA DEL NUEVO AÑO FISCAL.</description>
+    </item>
     <item>
       <title>XBOX PROBARA FUNCION PARA CONVERTIR JUEGOS FISICOS EN LICENCIAS DIGITALES</title>
       <link>https://Abismox.github.io/abismox/posts/xbox-probando-funcion-convertir-juegos-fisicos-licencias-digitales.html</link>
@@ -15,14 +63,6 @@
       <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
       <category>VIDEOJUEGOS</category>
       <description>DISC2DIGITAL PERMITIRA TRANSFORMAR DISCOS DE XBOX EN COPIAS DIGITALES ASOCIADAS A LA CUENTA</description>
-    </item>
-    <item>
-      <title>EL FIN DE LOS DISCOS DE PLAYSTATION CHOCA CON LA TRADICION FISICA EN ESPANA</title>
-      <link>https://Abismox.github.io/abismox/posts/kebab-case.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/kebab-case.html</guid>
-      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
-      <category>VIDEOJUEGOS</category>
-      <description>LAS CIFRAS MUESTRAN QUE EL JUEGO FISICO SIGUE SIENDO FUERTE EN ESPANA, A PESAR DE LA DECISION DE PLAYSTATION.</description>
     </item>
     <item>
       <title>FREE FIRE MAX | CODIGOS DE HOY JUEVES 2 DE JULIO DE 2026 - RECOMPENSAS GRATIS</title>
@@ -63,14 +103,6 @@
       <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
       <category>VIDEOJUEGOS</category>
       <description>DISC2DIGITAL PERMITIRA TRANSFORMAR DISCOS DE XBOX EN LICENCIAS DIGITALES ASOCIADAS A LA CUENTA.</description>
-    </item>
-    <item>
-      <title>METROID RAVENOUS FILTRADO: NUEVO JUEGO 2D DE NINTENDO EN 2026</title>
-      <link>https://Abismox.github.io/abismox/posts/metroid-ravenous-filtrado.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/metroid-ravenous-filtrado.html</guid>
-      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
-      <category>VIDEOJUEGOS</category>
-      <description>UN NUEVO JUEGO DE METROID PODRIA ESTAR EN CAMINO, SEGUN UNA FILTRACION DESDE BRASIL.</description>
     </item>
     <item>
       <title>LOCURA O GENIALIDAD? BUNGIE PLANTEO UN SIMULADOR DE CITAS DE DESTINY</title>
@@ -135,38 +167,6 @@
       <pubDate>Thu, 25 Jun 2026 00:00:00 +0000</pubDate>
       <category>VIDEOJUEGOS</category>
       <description>GRAND THEFT AUTO VI YA SE PUEDE RESERVAR EN ESPAÑA CON NOVEDADES EN LA NARRATIVA Y SIN MULTIJUGADOR.</description>
-    </item>
-    <item>
-      <title>GTA 6 YA TIENE PRECIO EN ESPANA Y ES MAS BAJO DE LO ESPERADO</title>
-      <link>https://Abismox.github.io/abismox/posts/gta-6-precio-espana.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/gta-6-precio-espana.html</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
-      <category>VIDEOJUEGOS</category>
-      <description>EL ESPERADO GRAND THEFT AUTO VI SE PUEDE RESERVAR EN FINLANDIA A UN PRECIO DE 79,99 EUROS EN LA ZONA EURO.</description>
-    </item>
-    <item>
-      <title>DIGITAL FOUNDRY ANALIZA LAS NUEVAS CAPTURAS DE GTA 6</title>
-      <link>https://Abismox.github.io/abismox/posts/digital-foundry-analiza-gta-6.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/digital-foundry-analiza-gta-6.html</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
-      <category>VIDEOJUEGOS</category>
-      <description>EL MEDIO TECNICO DUDITA QUE LAS CAPTURAS SEAN EN TIEMPO REAL EN CONSOLA</description>
-    </item>
-    <item>
-      <title>ROCKSTAR CONFIRMA LA FECHA DE PRECARGA DE GTA 6</title>
-      <link>https://Abismox.github.io/abismox/posts/rockstar-confirma-fecha-precarga-gta-6.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/rockstar-confirma-fecha-precarga-gta-6.html</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
-      <category>VIDEOJUEGOS</category>
-      <description>ROCKSTAR HA REVELADO LA FECHA EN QUE PODREMOS PRECARGAR GRAND THEFT AUTO 6 PARA JUGAR DESDE EL MISMO DIA DE LANZAMIENTO.</description>
-    </item>
-    <item>
-      <title>ROCKSTAR CONFIRMA: GRAND THEFT AUTO 6 MEJORADO EN PLAYSTATION 5 PRO</title>
-      <link>https://Abismox.github.io/abismox/posts/rockstar-lo-hace-oficial-grand-theft-auto-6-estar-mejorado-en-playstation-5-pro.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/rockstar-lo-hace-oficial-grand-theft-auto-6-estar-mejorado-en-playstation-5-pro.html</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
-      <category>VIDEOJUEGOS</category>
-      <description>LA PAGINA OFICIAL DE GTA 6 CONFIRMA MEJORAS TECNICAS EN PLAYSTATION 5 PRO.</description>
     </item>
   </channel>
 </rss>
