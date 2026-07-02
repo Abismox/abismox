@@ -440,8 +440,87 @@ MINIMAX_BASE_URL=https://api.minimax.io/v1   # ← FIX CRÍTICO
 
 ---
 
-**Última actualización:** 2026-07-01 09:00 (final de sesión v2.1.0)
-**Estado del sitio:** ✅ Commit `0505050` pusheado, GitHub Pages redesplegando
-**Estado del cron:** ✅ Sigue activo 00:00 hora Guanajuato, regenera desde nuevo template
-**Estado del cap:** ✅ 23 posts activos (<=30 dias, <=30 posts)
-**Próxima sesión:** verificar v2.1.0 en GitHub Pages + considerar mejoras adicionales
+## 📝 Notas de la sesión 2026-07-02 (security + arquitectura nueva)
+
+### Logros principales
+- ✅ **Security review** ejecutado con skill `security-review` → 3 vulnerabilidades encontradas y arregladas (commit `fb1ffa3`):
+  1. **Stored XSS via `javascript:` URL en `link_externo`** (HIGH) — `html.escape()` no neutraliza esquemas URL; solucionado con `_validar_link_externo()` que acepta solo `http(s)`
+  2. **JSON-LD script-tag breakout** (HIGH) — `json.dumps` no escapa `</script>`; solucionado con `_jsonld_safe()` que reemplaza `</` → `<\/`
+  3. **Path traversal + XSS via slug sin sanear** (MEDIUM) — solucionado con `_SLUG_RE` + `_sanitizar_slug()` + `Path.resolve().is_relative_to()` guard en `render_posts`
+- ✅ **UX fix: botones RSS removidos** — eliminados del topbar (`index.html:79`), footer (`index.html:165`) y nav de posts (`template_post.html:51`). Mantenido `<link rel="alternate" type="application/rss+xml">` en head para auto-discovery (lectores RSS siguen funcionando)
+- ✅ **`deploy.sh` endurecido** — añadido `git rebase --abort 2>/dev/null || true` al inicio (commit `a9556f8`) para hacerlo idempotente ante rebase en curso
+- ✅ **NUEVA ARQUITECTURA (la grande)** — separación de fetch (VPS) y render (GitHub Action):
+  - **VPS (`deploy.sh`)**: solo hace `git pull --ff-only` + `python build.py --only-fetch` + commitea `data/noticias.json` + push. NO toca HTML
+  - **GitHub Action (`.github/workflows/render.yml`)**: triggerea cuando cambia `data/noticias.json`, corre `python build.py --only-render`, commitea `posts/*.html` + `feed.xml` + `sitemap.xml`
+  - **Resultado**: cero conflictos Windows-VPS (cada quien escribe archivos distintos)
+
+### Commits de la sesión
+```
+fb1ffa3 fix: cerrar javascript: XSS, JSON-LD breakout y path traversal via slug
+0505050 feat: v2.1.0 polish + fix post-hero sin cartucho (anterior)
+a9556f8 fix(deploy): abortar rebase en curso al inicio para ser idempotente
+c8baa0d feat(architecture): separar fetch (VPS) y render (GitHub Action)
+457f379 auto: fetch noticias 2026-07-02 03:35              ← VPS ejecutó --only-fetch
+fdf9a61 auto: render posts 2026-07-02T09:35:29Z           ← GitHub Action ejecutó --only-render
+```
+
+### ✅ LA NUEVA ARQUITECTURA FUNCIONÓ A LA PRIMERA
+Los commits `457f379` y `fdf9a61` lo prueban:
+- `457f379` (VPS, 03:35 Guanajuato) → solo `data/noticias.json` modificado
+- `fdf9a61` (GitHub Action, 09:35 UTC) → solo `posts/*.html` + `feed.xml` + `sitemap.xml` modificados
+- Sin conflictos, sin intervención manual, end-to-end en ~6 horas
+
+### Archivos modificados/creados
+- `build.py` — añadidos `_SLUG_RE`, `_sanitizar_slug()`, `_validar_link_externo()`, `_jsonld_safe()`, guard path-traversal, regex slug, defensa en `validar_noticia`
+- `main.js` — `escapeAttr(internalUrl)` en renderFeatured
+- `index.html` — añadida meta CSP, removido botón RSS topbar y footer
+- `template_post.html` — añadida meta CSP, removido botón RSS del nav, añadida auto-discovery en head
+- `posts/*.html` (×27) — regenerados con nuevo template (sin RSS buttons, con CSP)
+- `feed.xml`, `sitemap.xml` — regenerados
+- `deploy.sh` — simplificado a solo `--only-fetch` + commit de `data/noticias.json`
+- `.github/workflows/render.yml` — **NUEVO** workflow de render
+- `.gitignore` — añadida línea `_preview/`
+
+### Drama de la sesión (documentar para no repetir)
+1. Conflicto de rebase en VPS por cron corriendo mientras Windows pusheaba → resuelto con `git rebase --abort` + `git reset --hard origin/main` en VPS
+2. Drama de vim atrapando al usuario con un swap file viejo (`.COMMIT_EDITMSG.swp`) → solución: `A` (abort) + `del .git\.COMMIT_EDITMSG.swp` + usar `git commit -m "..."` directamente sin abrir editor
+3. Considerado revertir la arquitectura (`git revert c8baa0d`) → no aplicado; el log reveló que ya estaba funcionando
+4. Lección: **antes de revertir, revisar el log** — la "decisión de revertir" era innecesaria porque el sistema ya probó funcionar
+
+### Decisiones de diseño de la sesión
+- **VPS = "data fetcher"**: solo escribe JSON. GitHub Action = "renderer" (HTML, feed, sitemap). Separación clara de responsabilidades
+- **CSP en meta tag** (no en header HTTP — GitHub Pages no permite headers custom gratis): `default-src 'self'; script-src 'self' 'unsafe-inline'; ...`
+- **RSS auto-discovery preservado**: lectores RSS siguen detectando el feed aunque el botón visible desaparezca (importante para no romper Feedly/NetNewsWire users)
+- **defang `</` → `<\/` en JSON-LD**: previene XSS via script-tag breakout sin romper JSON válido (los parsers revierten `\/` a `/`)
+
+### Pendientes
+- [ ] Verificar que el próximo cron del VPS (00:00 Guanajuato) sigue funcionando con la arquitectura nueva
+- [ ] Verificar en GitHub Actions que el workflow se sigue disparando
+- [ ] Considerar agregar notificaciones (Telegram/Discord/email) cuando el workflow o el deploy falla
+- [ ] Considerar limitar frecuencia del cron (cada 6h en vez de diario) si se quiere contenido más fresco
+- [ ] Limpiar el `01a2d10` misterioso del historial (sigue ahí, sin importancia)
+
+### Cómo retomar mañana
+> "Hola, leí CONTEXT.md. ¿Cómo sigue?"
+> O simplemente: abrir el proyecto y preguntar qué hacer.
+
+Para verificar que todo está vivo:
+```bash
+# 1. Commits en GitHub
+curl --ssl-no-revoke -s https://api.github.com/repos/Abismox/abismox/commits | jq -r '.[0:3] | .[] | "\(.sha[0:7]) \(.commit.message | split("\n")[0])"'
+
+# 2. Sitio activo
+curl --ssl-no-revoke -sI https://Abismox.github.io/abismox/ | head -3
+
+# 3. Último run del GitHub Action
+# Ir a https://github.com/Abismox/abismox/actions
+```
+
+---
+
+**Última actualización:** 2026-07-02 03:30 UTC (final de sesión security + arquitectura)
+**Estado del sitio:** ✅ Arquitectura nueva funcionando (probada con 2 deploys automáticos: VPS fetch + GitHub Action render)
+**Estado del cron VPS:** ✅ Activo, ahora hace solo `--only-fetch` (commit JSON)
+**Estado del GitHub Action:** ✅ Activo, triggerea cuando JSON cambia, hace `--only-render` (commit HTML)
+**Estado del cap:** ✅ 27 posts activos (<=30 dias, <=30 posts)
+**Próxima sesión:** verificar que el sistema sigue funcionando, considerar notificaciones o ajustes finos
