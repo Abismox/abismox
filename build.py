@@ -72,6 +72,16 @@ _SLUG_RE = re.compile(r"^[a-z0-9][a-z0-9-]{0,127}$")
 # permitirían XSS via href.
 _URL_SCHEMES_OK = frozenset({"http", "https"})
 
+# Slugs que el AI suele devolver al "ecohar" ejemplos del prompt. Si el slug
+# coincide, lo re-derivamos del título en vez de generar un post roto.
+_SLUG_PLACEHOLDERS = frozenset({
+    "kebab-case",            # ejemplo histórico del prompt
+    "titulo-de-la-noticia",  # ejemplo nuevo del prompt (slug del título genérico)
+    "titulo-en-mayusculas",  # variante en mayúsculas
+    "ejemplo", "ejemplo-noticia", "ejemplo-noticia-2024",
+    "placeholder", "muestra", "slug-ejemplo", "post-ejemplo",
+})
+
 
 def _sanitizar_slug(valor: str) -> Optional[str]:
     """Re-slugifica un valor. Devuelve None si no se puede generar uno válido."""
@@ -155,21 +165,37 @@ def categoria_titulo(cat: str) -> str:
 
 
 def validar_noticia(n: Dict[str, Any]) -> Optional[Dict[str, Any]]:
-    if not n.get("slug"):
-        log.warning("Noticia sin slug, id=%s: saltando", n.get("id"))
-        return None
+    titulo = (n.get("titulo") or "").strip()
 
-    # Sanitizar slug: el AI puede devolver rutas ("../../etc") o
-    # meta-chars que rompen atributos HTML al usarse en href.
-    slug_limpio = _sanitizar_slug(n["slug"]) or _sanitizar_slug(n.get("titulo", ""))
+    # Slug puede faltar, venir vacío, o ser un placeholder eco-eado por el AI.
+    # En los tres casos lo re-derivamos del título (no saltamos la noticia).
+    slug_crudo = (n.get("slug") or "").strip()
+    placeholder = (not slug_crudo) or (slug_crudo in _SLUG_PLACEHOLDERS)
+
+    if placeholder:
+        log.warning(
+            "Slug %r ausente/placeholder -> derivando de título en '%s'",
+            repr(n.get("slug")) if n.get("slug") is not None else "(ausente)",
+            titulo[:60],
+        )
+        # Saltamos slugify sobre string vacío (devolvería "post" por diseño)
+        # y derivamos directo del título.
+        slug_limpio = _sanitizar_slug(titulo)
+    else:
+        # Slug provisto: usarlo, con fallback a título si _sanitizar_slug falla.
+        # (El AI puede devolver rutas "../../etc" o meta-chars que rompen
+        # atributos HTML al usarse en href.)
+        slug_limpio = _sanitizar_slug(slug_crudo) or _sanitizar_slug(titulo)
+
     if not slug_limpio:
-        slug_limpio = "post"
-    if slug_limpio != n["slug"]:
-        log.warning("Slug inseguro %r, normalizado a %r", n.get("slug"), slug_limpio)
+        log.warning("Noticia sin título derivable, id=%s: saltando", n.get("id"))
+        return None
+    if slug_limpio != (n.get("slug") or ""):
+        log.warning("Slug %r normalizado a %r", n.get("slug"), slug_limpio)
     n["slug"] = slug_limpio
 
-    if not n.get("titulo") or not n.get("fecha"):
-        log.warning("Noticia incompleta, slug=%s: saltando", n.get("slug"))
+    if not titulo or not n.get("fecha"):
+        log.warning("Noticia incompleta, slug=%s: saltando", n["slug"])
         return None
     if not n.get("color"):
         n["color"] = "#FF1493"
@@ -283,7 +309,7 @@ def parse_pub_date(pub: str) -> str:
 def generar_con_minimax(item: Dict[str, str]) -> Optional[Dict[str, Any]]:
     """Llama a minimax para resumir/estructurar una noticia."""
     api_key = os.environ.get("MINIMAX_API_KEY")
-    base_url = os.environ.get("MINIMAX_BASE_URL", "https://api.minimax.chat/v1")
+    base_url = os.environ.get("MINIMAX_BASE_URL", "https://api.minimax.io/v1")
     if not api_key:
         log.warning("MINIMAX_API_KEY no definida: omitiendo generación con IA")
         return None
@@ -294,7 +320,7 @@ def generar_con_minimax(item: Dict[str, str]) -> Optional[Dict[str, Any]]:
     prompt = (
         "Resume la siguiente noticia en estilo retro-pixel (mayúsculas, sin emojis, tono informativo). "
         "Devuelve JSON con esta estructura exacta y NADA MÁS:\n"
-        '{"slug": "kebab-case", "titulo": "TITULO EN MAYUSCULAS", '
+        '{"slug": "titulo-de-la-noticia", "titulo": "TITULO DE LA NOTICIA", '
         '"preview": "1-2 frases", "contenido": "1 parrafo de 3-5 frases", '
         '"color": "#HEX_COLOR"}\n\n'
         f"Titular: {item['titulo_crudo']}\n"
