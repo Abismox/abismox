@@ -6,8 +6,48 @@
     <description>Archivo automático de noticias gaming + tecnología. Pixel art, nostalgia y futuro digital.</description>
     <atom:link href="https://Abismox.github.io/abismox/feed.xml" rel="self" type="application/rss+xml"/>
     <language>es-es</language>
-    <lastBuildDate>Thu, 02 Jul 2026 06:54:05 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 02 Jul 2026 08:21:55 +0000</lastBuildDate>
     <generator>ABISMOX build.py</generator>
+    <item>
+      <title>XBOX PROBARA FUNCION PARA CONVERTIR JUEGOS FISICOS EN DIGITALES</title>
+      <link>https://Abismox.github.io/abismox/posts/xbox-disc2digital.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/xbox-disc2digital.html</guid>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>DISC2DIGITAL PERMITIRA TRANSFORMAR DISCOS DE XBOX EN LICENCIAS DIGITALES ASOCIADAS A LA CUENTA.</description>
+    </item>
+    <item>
+      <title>EL FIN DE LOS DISCOS DE PLAYSTATION CHOCA CON LA TRADICION FISICA EN ESPANA</title>
+      <link>https://Abismox.github.io/abismox/posts/kebab-case.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/kebab-case.html</guid>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>LAS CIFRAS MUESTRAN QUE EL JUEGO FISICO SIGUE FUERTE EN ESPANA A PESAR DE LA DECISION DE PLAYSTATION.</description>
+    </item>
+    <item>
+      <title>ONIMUSHA: WAY OF THE SWORD LLEGA TRES SEMANAS ANTES DE LO PREVISTO</title>
+      <link>https://Abismox.github.io/abismox/posts/onimusha-way-of-the-sword-adelanta-su-lanzamiento.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/onimusha-way-of-the-sword-adelanta-su-lanzamiento.html</guid>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>CAPCOM ANUNCIA EL LANZAMIENTO ANTICIPADO DE ONIMUSHA: WAY OF THE SWORD PARA EL 4 DE SEPTIEMBRE.</description>
+    </item>
+    <item>
+      <title>SOLUCION WORDLE EN ESPANOL Y TILDES HOY 2 DE JULIO Y PISTAS</title>
+      <link>https://Abismox.github.io/abismox/posts/solucion-wordle-espanol-tildes-2-julio-pistas.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/solucion-wordle-espanol-tildes-2-julio-pistas.html</guid>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>DESCUBRE LA SOLUCION DEL WORDLE EN ESPANOL Y TILDES PARA EL 2 DE JULIO DE 2026 Y OBTEN PISTAS PARA EL RETO DE HOY.</description>
+    </item>
+    <item>
+      <title>METROID RAVENOUS FILTRADO: NUEVO JUEGO 2D DE NINTENDO EN 2026</title>
+      <link>https://Abismox.github.io/abismox/posts/metroid-ravenous-filtrado.html</link>
+      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/metroid-ravenous-filtrado.html</guid>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
+      <category>VIDEOJUEGOS</category>
+      <description>UN NUEVO JUEGO DE METROID PODRIA ESTAR EN CAMINO, SEGUN UNA FILTRACION DESDE BRASIL.</description>
+    </item>
     <item>
       <title>LOCURA O GENIALIDAD? BUNGIE PLANTEO UN SIMULADOR DE CITAS DE DESTINY</title>
       <link>https://Abismox.github.io/abismox/posts/locura-o-genialidad-bungie-simulador-citas-destiny.html</link>
@@ -15,14 +55,6 @@
       <pubDate>Thu, 25 Jun 2026 00:00:00 +0000</pubDate>
       <category>VIDEOJUEGOS</category>
       <description>EXTRANO PROYECTO DE BUNGIE: UN SIMULADOR DE CITAS BASADO EN DESTINY NUNCA LLEGO A VER LA LUZ.</description>
-    </item>
-    <item>
-      <title>HABR EDICION COLECCIONISTA DE GTA 6?</title>
-      <link>https://Abismox.github.io/abismox/posts/kebab-case.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/kebab-case.html</guid>
-      <pubDate>Thu, 25 Jun 2026 00:00:00 +0000</pubDate>
-      <category>VIDEOJUEGOS</category>
-      <description>MEDIAMARKT ACLARA QUE ROCKSTAR NO HA ANUNCIADO PLANES PARA UNA EDICION COLECCIONISTA DE GTA 6.</description>
     </item>
     <item>
       <title>GHOST OF YOTEI IMPULSA EL TURISMO EN JAPON</title>
@@ -135,38 +167,6 @@
       <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
       <category>VIDEOJUEGOS</category>
       <description>LOS ANALISTAS DICEN QUE LA AUSENCIA DE UNA VERSION EN DISCO NO AFECTARA LAS VENTAS DE GTA 6</description>
-    </item>
-    <item>
-      <title>DIGITAL FOUNDRY ANALIZA NUEVAS CAPTURAS DE GTA 6</title>
-      <link>https://Abismox.github.io/abismox/posts/digital-foundry-analiza-nuevas-capturas-gta-6.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/digital-foundry-analiza-nuevas-capturas-gta-6.html</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
-      <category>VIDEOJUEGOS</category>
-      <description>EL MEDIO TECNICO DUDITA QUE LAS CAPTURAS DE GTA 6 SEAN EN TIEMPO REAL EN CONSOLA.</description>
-    </item>
-    <item>
-      <title>GTA 6 YA SE PUEDE RESERVAR EN ESPANA</title>
-      <link>https://Abismox.github.io/abismox/posts/gta-6-ya-se-puede-reservar-en-espana-para-ps5-y-xbox-series.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/gta-6-ya-se-puede-reservar-en-espana-para-ps5-y-xbox-series.html</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
-      <category>VIDEOJUEGOS</category>
-      <description>VICE CITY NOS LLAMA! LAS RESERVAS DE GTA 6 YA ESTAN ABIERTAS PARA PS5 Y XBOX SERIES.</description>
-    </item>
-    <item>
-      <title>ANALISTAS DE LA INDUSTRIA HABLAN SOBRE GTA 6</title>
-      <link>https://Abismox.github.io/abismox/posts/analistas-industriales-opinan-sobre-gta-6.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/analistas-industriales-opinan-sobre-gta-6.html</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
-      <category>VIDEOJUEGOS</category>
-      <description>LA EDICION FISICA DE GTA 6 NO AFECTARA SUS VENTAS SEGUN EXPERTOS</description>
-    </item>
-    <item>
-      <title>PRECIOS DE PS6 Y XBOX HELIX: ANALISTAS ESPECULAN SOBRE LOS MAS DE 1000 EUROS</title>
-      <link>https://Abismox.github.io/abismox/posts/precio-ps6-xbox-helix.html</link>
-      <guid isPermaLink="true">https://Abismox.github.io/abismox/posts/precio-ps6-xbox-helix.html</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
-      <category>VIDEOJUEGOS</category>
-      <description>LOS ANALISTAS ESPERAN QUE PLAYSTATION 6 Y XBOX HELIX TENGAN PRECIOS SIMILARES A STEAM MACHINE, SUPERANDO LOS 1000 EUROS.</description>
     </item>
   </channel>
 </rss>
