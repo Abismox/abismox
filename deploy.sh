@@ -7,6 +7,10 @@ set -euo pipefail
 
 cd "$(dirname "$0")"
 
+# Saneamiento: si quedó un rebase en curso de una corrida interrumpida,
+# lo abortamos antes de empezar uno nuevo. Hace el script idempotente.
+git rebase --abort 2>/dev/null || true
+
 # --- Cargar secrets ---
 if [ -f .env ]; then
     set -a
